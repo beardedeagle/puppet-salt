@@ -3,16 +3,18 @@ require 'spec_helper'
 describe 'salt' do
 
   context 'on unsupported distributions' do
-    let(:facts) {{ :osfamily => 'Unsupported', }}
+    let(:facts) {{ :osfamily => 'Unsupported' }}
 
     it 'we fail' do
-      expect { subject }.to raise_error(/Unsupported platform: Unsupported/)
+      should compile.and_raise_error(/Unsupported platform: Unsupported/)
     end
   end
 
   ['Debian', 'RedHat', 'SUSE', ].each do |distro|
     context "on #{distro}" do
-      let(:facts) {{ :osfamily => distro, }}
+      let(:facts) {{
+          :osfamily => distro,
+        }}
 
       it { should contain_class('salt::master::install') }
       it { should contain_class('salt::master::config') }
