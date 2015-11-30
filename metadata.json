@@ -1,0 +1,18 @@
+{
+  "author": "beardedeagle",
+  "dependencies": [
+    {
+      "name": "puppetlabs/stdlib",
+      "version_requirement": "\u003e\u003d 2.2.1"
+    }
+  ],
+  "license": "Apache License, Version 2.0",
+  "name": "beardedeagle-salt",
+  "operatingsystem_support": [],
+  "project_page": "https://github.com/beardedeagle/puppet-salt",
+  "requirements": [],
+  "source": "git:github.com/beardedeagle/puppet-salt.git",
+  "summary": "Puppet module to install and configure SaltStack",
+  "tags": [],
+  "version": "0.0.1"
+}
