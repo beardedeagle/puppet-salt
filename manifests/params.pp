@@ -196,10 +196,7 @@ class salt::params {
   $master_state_events        = false
 
   # File Server settings
-  $master_file_roots                = %q{file_roots:
-  base:
-    - /srv/salt
-    - /srv/spm/salt}
+  $master_file_roots                  = "file_roots:\n  base:\n    - /srv/salt\n    - /srv/spm/salt}"
   $master_top_file_merging_strategy   = 'merge'
   $master_env_order                   = '[]'
   $master_default_top                 = 'base'
@@ -207,8 +204,7 @@ class salt::params {
   $master_file_buffer_size            = 1048576
   $master_file_ignore_regex           = 'null'
   $master_file_ignore_glob            = 'null'
-  $master_fileserver_backend          = %q{fileserver_backend:
-  - roots}
+  $master_fileserver_backend          = "fileserver_backend:\n  - roots"
   $master_fileserver_followsymlinks   = true
   $master_fileserver_ignoresymlinks   = false
   $master_fileserver_limit_traversal  = false
@@ -217,10 +213,7 @@ class salt::params {
   $master_gitfs_root                  = ''
 
   # Pillar settings
-  $master_pillar_roots                    = %q{pillar_roots:
-  base:
-    - /srv/pillar
-    - /srv/spm/pillar}
+  $master_pillar_roots                    = "pillar_roots:\n  base:\n    - /srv/pillar\n    - /srv/spm/pillar"
   $master_ext_pillar                      = '[]'
   $master_pillar_opts                     = false
   $master_pillar_safe_render_error        = true
@@ -323,16 +316,10 @@ class salt::params {
 
   # File Directory Settings
   $minion_file_client                 = 'remote'
-  $minion_file_roots                  = %q{file_roots:
-  base:
-    - /srv/salt
-    - /srv/spm/salt}
+  $minion_file_roots                  = "file_roots:\n  base:\n    - /srv/salt\n    - /srv/spm/salt}"
   $minion_fileserver_limit_traversal  = false
   $minion_hash_type                   = 'md5'
-  $minion_pillar_roots                = %q{pillar_roots:
-  base:
-    - /srv/pillar
-    - /srv/spm/pillar}
+  $minion_pillar_roots                = "pillar_roots:\n  base:\n    - /srv/pillar\n    - /srv/spm/pillar"
 
   # Security settings
   $minion_open_mode             = false
