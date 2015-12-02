@@ -107,13 +107,5 @@ inherits salt::master {
     mode    => '0664',
     content => template($master_config_template),
     replace => $master_config_manage,
-  },
-  file { $repo_file:
-    ensure  => file,
-    owner   => 0,
-    group   => 0,
-    mode    => '0664',
-    content => template($repo_file_template),
-    replace => $repo_file_manage,
   }
 }
