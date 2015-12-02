@@ -2,6 +2,10 @@
 class salt::params {
   case $::osfamily {
     'redhat' : {
+      $repo_file_manage       = true
+      $repo_file              = '/etc/yum.repos.d/saltstack.repo'
+      $repo_file_template     = 'salt/master.erb'
+
       $master_config_manage   = true
       $master_config          = '/etc/salt/master'
       $master_config_template = 'salt/master.erb'
@@ -22,31 +26,31 @@ class salt::params {
       $minion_service_manage  = true
       $minion_service_enable  = true
 
-#      $cloud_config_manage    = true
-#      $cloud_config           = '/etc/salt/cloud'
-#      $cloud_config_template  = 'salt/cloud.erb'
-#      $cloud_package_name     = 'salt-cloud'
-#      $cloud_package_ensure   = 'present'
+      $cloud_config_manage    = true
+      $cloud_config           = '/etc/salt/cloud'
+      $cloud_config_template  = 'salt/cloud.erb'
+      $cloud_package_name     = 'salt-cloud'
+      $cloud_package_ensure   = 'present'
 
-#      $api_package_name       = 'salt-api'
-#      $api_package_ensure     = 'present'
-#      $api_service_name       = 'salt-api'
-#      $api_service_ensure     = 'running'
-#      $api_service_manage     = true
-#      $api_service_enable     = true
+      $api_package_name       = 'salt-api'
+      $api_package_ensure     = 'present'
+      $api_service_name       = 'salt-api'
+      $api_service_ensure     = 'running'
+      $api_service_manage     = true
+      $api_service_enable     = true
 
-#      $syndic_package_name    = 'salt-syndic'
-#      $syndic_package_ensure  = 'present'
-#      $syndic_service_name    = 'salt-syndic'
-#      $syndic_service_ensure  = 'running'
-#      $syndic_service_manage  = true
-#      $syndic_service_enable  = true
+      $syndic_package_name    = 'salt-syndic'
+      $syndic_package_ensure  = 'present'
+      $syndic_service_name    = 'salt-syndic'
+      $syndic_service_ensure  = 'running'
+      $syndic_service_manage  = true
+      $syndic_service_enable  = true
 
-#      $ssh_config_manage      = true
-#      $ssh_config             = '/etc/salt/roster'
-#      $ssh_config_template    = 'salt/roster.erb'
-#      $ssh_package_name       = 'salt-ssh'
-#      $ssh_package_ensure     = 'present'
+      $ssh_config_manage      = true
+      $ssh_config             = '/etc/salt/roster'
+      $ssh_config_template    = 'salt/roster.erb'
+      $ssh_package_name       = 'salt-ssh'
+      $ssh_package_ensure     = 'present'
     }
     'archlinux' : {
       $minion_config_manage   = true
