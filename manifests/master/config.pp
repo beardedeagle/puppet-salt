@@ -1,8 +1,8 @@
 # this class is used to configure the salt master config file
 class salt::master::config (
-  $master_config_manage                   = $salt::params::master_config_manage,
-  $master_config                          = $salt::params::master_config,
-  $master_config_template                 = $salt::params::master_config_template,
+  $master_config_manage                   = $salt::master::master_config_manage,
+  $master_config                          = $salt::master::master_config,
+  $master_config_template                 = $salt::master::master_config_template,
   $master_default_include                 = $salt::master::master_default_include,
   $master_interface                       = $salt::master::master_interface,
   $master_ipv6                            = $salt::master::master_ipv6,
