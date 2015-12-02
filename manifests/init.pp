@@ -5,8 +5,8 @@
 class salt {
   include 'salt::master'
   include 'salt::minion'
-  include 'salt::cloud'
-  include 'salt::api'
-  include 'salt::syndic'
-  include 'salt::ssh'
+#  include 'salt::cloud'
+#  include 'salt::api'
+#  include 'salt::syndic'
+#  include 'salt::ssh'
 }
