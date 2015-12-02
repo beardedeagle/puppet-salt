@@ -103,7 +103,7 @@ inherits salt::minion {
     mode    => '0664',
     content => template($minion_config_template),
     replace => $minion_config_manage,
-  }
+  },
   file { $repo_file:
     ensure  => file,
     owner   => 0,
