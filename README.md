@@ -1,6 +1,4 @@
-#puppet-salt
-
-[![Build Status](https://travis-ci.org/beardedeagle/puppet-salt.svg)](https://travis-ci.org/beardedeagle/puppet-salt)
+#puppet-salt [![Build Status](https://travis-ci.org/beardedeagle/puppet-salt.svg)](https://travis-ci.org/beardedeagle/puppet-salt)
 
 ####Table of Contents
 
@@ -13,14 +11,15 @@
 4. [Usage - Configuration options and additional functionality](#usage)
 5. [Reference - An under-the-hood peek at what the module is doing and how](#reference)
 5. [Limitations - OS compatibility, etc.](#limitations)
+6. [Special Thanks](#special-thanks)
 
 # salt Puppet Module
 
-Manage salt client, server, cloud and api via Puppet.
+Manage salt server, client, cloud, api, syndic and ssh via Puppet.
 
 ##Module Description
 
-This module can be used to install a single salt master, minion, cloud, api or all on one machine.
+This module can be used to install a single salt master, minion, cloud, api, syndic, ssh or all on one machine.
 
 ##Setup
 
@@ -74,8 +73,12 @@ include '::salt'
 
 ###Classes
  * salt: Main class, includes all the rest.
- * salt::minion: Handles the minion.
- * salt::master: Handles the master
+ * salt::minion: Handles salt-minion.
+ * salt::master: Handles salt-master.
+ * salt::cloud: Handles salt-cloud.
+ * salt::api: Handles salt-api.
+ * salt::syndic: Handles salt-syndic.
+ * salt::ssh: Handles salt-ssh.
  * salt::params: all parameters needed for the rest.
 
 ###Parameters salt::minion
@@ -114,4 +117,8 @@ This sets the file to write salt master configuration into.
 
 ##Limitations
 
-This module has been built on and tested against Puppet 3.2.3 and higher.
+This module has been built on and tested against Puppet >= 3.8.4 and Ruby >=2.0.0.
+
+##Special Thanks
+
+Shout out to aboe76. This module would not be possible without the great work already done.

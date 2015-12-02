@@ -1,5 +1,5 @@
 name 'beardedeagle-salt'
-version '0.0.1'
+version '0.0.2'
 author 'beardedeagle'
 license 'Apache License, Version 2.0'
 source 'git:github.com/beardedeagle/puppet-salt.git'

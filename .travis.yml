@@ -12,7 +12,7 @@ branches:
 gemfile: Gemfile
 
 env:
-  - PUPPET_VERSION=3.2.3
+  - PUPPET_VERSION=3.8.4
 
 notifications:
   email: false

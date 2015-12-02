@@ -22,5 +22,4 @@ salt::master {
       hasrestart => true,
     }
   }
-
 }

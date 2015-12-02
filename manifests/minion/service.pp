@@ -22,5 +22,4 @@ salt::minion {
       hasrestart => true,
     }
   }
-
 }

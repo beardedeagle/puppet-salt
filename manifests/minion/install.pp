@@ -9,5 +9,4 @@ salt::minion {
       $salt::minion::minion_package_ensure, }
 
   }
-
 }

@@ -9,7 +9,7 @@
 # Per default, the master will automatically include all config files
 # from master.d/*.conf (master.d is a directory in the same directory
 # as the main master config file).
-#default_include: master.d/*.conf
+default_include: <%= @master_default_include %>
 
 # The address of the interface to bind to:
 interface: <%= @master_interface %>
@@ -135,23 +135,25 @@ minion_data_cache: <%= @master_minion_data_cache %>
 # be set. See various returners in salt/returners for details on required
 # configuration values. (See also, event_return_queue below.)
 #
-#event_return: mysql
+event_return: <%= @master_event_return %>
 
 # On busy systems, enabling event_returns can cause a considerable load on
 # the storage system for returners. Events can be queued on the master and
 # stored in a batched fashion using a single transaction for multiple events.
 # By default, events are not queued.
-#event_return_queue: 0
+event_return_queue: <%= @master_event_return_queue %>
 
 # Only events returns matching tags in a whitelist
 # event_return_whitelist:
 #   - salt/master/a_tag
 #   - salt/master/another_tag
+event_return_whitelist: <%= @master_event_return_whitelist %>
 
 # Store all event returns _except_ the tags in a blacklist
 # event_return_blacklist:
 #   - salt/master/not_this_tag
 #   - salt/master/or_this_one
+event_return_blacklist: <%= @master_event_return_blacklist %>
 
 # Passing very large events can cause the minion to consume large amounts of
 # memory. This value tunes the maximum size of a message allowed onto the
@@ -249,6 +251,7 @@ permissive_pki_access: <%= @master_permissive_pki_access %>
 #    - test.ping
 #    - network.*
 #
+client_acl: <%= @master_client_acl %>
 # Blacklist any of the following users or modules
 #
 # This example would blacklist all non sudo users, including root from
@@ -261,11 +264,12 @@ permissive_pki_access: <%= @master_permissive_pki_access %>
 #    - '^(?!sudo_).*$'   #  all non sudo users
 #  modules:
 #    - cmd
+client_acl_blacklist: <%= @master_client_acl_blacklist %>
 
 # Enforce client_acl & client_acl_blacklist when users have sudo
 # access to the salt command.
 #
-#sudo_acl: False
+sudo_acl: <%= @master_sudo_acl %>
 
 # The external auth system uses the Salt auth modules to authenticate and
 # validate users to access areas of the Salt system.
@@ -274,6 +278,8 @@ permissive_pki_access: <%= @master_permissive_pki_access %>
 #    fred:
 #      - test.*
 #
+external_auth: <%= @master_external_auth %>
+
 # Time (in seconds) for a newly generated token to live. Default: 12 hours
 token_expire: <%= @master_token_expire %>
 
@@ -304,20 +310,21 @@ sign_pub_messages: <%= @master_sign_pub_messages %>
 ##########################################
 
 # Pass in an alternative location for the salt-ssh roster file
-#roster_file: /etc/salt/roster
+roster_file: <%= @master_roster_file %>
 
 # Pass in minion option overrides that will be inserted into the SHIM for
 # salt-ssh calls. The local minion config is not used for salt-ssh. Can be
 # overridden on a per-minion basis in the roster (`minion_opts`)
 #ssh_minion_opts:
 #  gpg_keydir: /root/gpg
+ssh_minion_opts: <%= @master_ssh_minion_opts %>
 
 #####    Master Module Management    #####
 ##########################################
 # Manage how master side modules are loaded.
 
 # Add any additional locations to look for master runners:
-#runner_dirs: []
+runner_dirs: <%= @master_runner_dirs %>
 
 # Enable Cython for master side modules:
 cython_enable: <%= @master_cython_enable %>
@@ -339,7 +346,7 @@ state_top: <%= @master_state_top %>
 # master_tops:
 #   ext_nodes: <Shell command which returns yaml>
 #
-#master_tops: {}
+master_tops: <%= @master_master_tops %>
 
 # The external_nodes option allows Salt to gather data that would normally be
 # placed in a top file. The external_nodes option is the executable that will
@@ -387,12 +394,12 @@ state_output: <%= @master_state_output %>
 # state_aggregate:
 #   - pkg
 #
-#state_aggregate: False
+state_aggregate: <%= @master_state_aggregate %>
 
 # Send progress events as each function in a state run completes execution
 # by setting to 'True'. Progress events are in the format
 # 'salt/job/<JID>/prog/<MID>/<RUN NUM>'.
-#state_events: False
+state_events: <%= @master_state_events %>
 
 #####      File Server settings      #####
 ##########################################
@@ -419,22 +426,24 @@ state_output: <%= @master_state_output %>
 #  base:
 #    - /srv/salt
 #
+file_roots: <%= @master_file_roots %>
 
 # When using multiple environments, each with their own top file, the
 # default behaviour is an unordered merge. To prevent top files from
 # being merged together and instead to only use the top file from the
 # requested environment, set this value to 'same'.
-#top_file_merging_strategy: merge
+top_file_merging_strategy: <%= @master_top_file_merging_strategy %>
 
 # To specify the order in which environments are merged, set the ordering
 # in the env_order option. Given a conflict, the last matching value will
 # win.
 #env_order: ['base', 'dev', 'prod']
+env_order: <%= @master_env_order %>
 
 # If top_file_merging_strategy is set to 'same' and an environment does not
 # contain a top file, the top file in the environment specified by default_top
 # will be used instead.
-#default_top: base
+default_top: <%= @master_default_top %>
 
 # The hash_type is the hash to use when discovering the hash of a file on
 # the master server. The default is md5, but sha1, sha224, sha256, sha384
@@ -456,6 +465,7 @@ file_buffer_size: <%= @master_file_buffer_size %>
 #file_ignore_regex:
 #  - '/\.svn($|/)'
 #  - '/\.git($|/)'
+file_ignore_regex: <%= @master_file_ignore_regex %>
 
 # A file glob (or list of file globs) that will be matched against the file
 # path before syncing the modules and states to the minions. This is similar
@@ -465,6 +475,7 @@ file_buffer_size: <%= @master_file_buffer_size %>
 #  - '*.pyc'
 #  - '*/somefolder/*.bak'
 #  - '*.swp'
+file_ignore_glob: <%= @master_file_ignore_glob %>
 
 # File Server Backend
 #
@@ -481,25 +492,26 @@ file_buffer_size: <%= @master_file_buffer_size %>
 #fileserver_backend:
 #  - git
 #  - roots
-#
+fileserver_backend: <%= @master_fileserver_backend %>
+
 # Uncomment the line below if you do not want the file_server to follow
 # symlinks when walking the filesystem tree. This is set to True
 # by default. Currently this only applies to the default roots
 # fileserver_backend.
-#fileserver_followsymlinks: False
+fileserver_followsymlinks: <%= @master_fileserver_followsymlinks %>
 #
 # Uncomment the line below if you do not want symlinks to be
 # treated as the files they are pointing to. By default this is set to
 # False. By uncommenting the line below, any detected symlink while listing
 # files on the Master will not be returned to the Minion.
-#fileserver_ignoresymlinks: True
+fileserver_ignoresymlinks: <%= @master_fileserver_ignoresymlinks %>
 #
 # By default, the Salt fileserver recurses fully into all defined environments
 # to attempt to find files. To limit this behavior so that the fileserver only
 # traverses directories with SLS files and special Salt directories like _modules,
 # enable the option below. This might be useful for installations where a file root
 # has a very large number of files and performance is impacted. Default is False.
-# fileserver_limit_traversal: False
+fileserver_limit_traversal: <%= @master_fileserver_limit_traversal %>
 #
 # The fileserver can fire events off every time the fileserver is updated,
 # these are disabled by default, but can be easily turned on by setting this
@@ -524,18 +536,19 @@ file_buffer_size: <%= @master_file_buffer_size %>
 #gitfs_remotes:
 #  - git://github.com/saltstack/salt-states.git
 #  - file:///var/git/saltmaster
-#
+gitfs_remotes: <%= @master_gitfs_remotes %>
+
 # The gitfs_ssl_verify option specifies whether to ignore ssl certificate
 # errors when contacting the gitfs backend. You might want to set this to
 # false if you're using a git backend that uses a self-signed certificate but
 # keep in mind that setting this flag to anything other than the default of True
 # is a security concern, you may want to try using the ssh transport.
-#gitfs_ssl_verify: True
+gitfs_ssl_verify: <%= @master_gitfs_ssl_verify %>
 #
 # The gitfs_root option gives the ability to serve files from a subdirectory
 # within the repository. The path is defined relative to the root of the
 # repository and defaults to the repository root.
-#gitfs_root: somefolder/otherfolder
+gitfs_root: <%= @master_gitfs_root %>
 #
 #
 #####         Pillar settings        #####
@@ -548,10 +561,12 @@ file_buffer_size: <%= @master_file_buffer_size %>
 #pillar_roots:
 #  base:
 #    - /srv/pillar
-#
+pillar_roots: <%= @master_pillar_roots %>
+
 #ext_pillar:
 #  - hiera: /etc/hiera.yaml
 #  - cmd_yaml: cat /etc/salt/yaml
+ext_pillar: <%= @master_ext_pillar %>
 
 # The ext_pillar_first option allows for external pillar sources to populate
 # before file system pillar. This allows for targeting file system pillar from
@@ -568,14 +583,14 @@ file_buffer_size: <%= @master_file_buffer_size %>
 # The pillar_opts option adds the master configuration file data to a dict in
 # the pillar called "master". This is used to set simple configurations in the
 # master config file that can then be used on minions.
-#pillar_opts: False
+pillar_opts: <%= @master_pillar_opts %>
 
 # The pillar_safe_render_error option prevents the master from passing pillar
 # render errors to the minion. This is set on by default because the error could
 # contain templating data which would give that minion information it shouldn't
 # have, like a password! When set true the error message will only show:
 #   Rendering SLS 'my.sls' failed. Please see master log for details.
-#pillar_safe_render_error: True
+pillar_safe_render_error: <%= @master_pillar_safe_render_error %>
 
 # The pillar_source_merging_strategy option allows you to configure merging strategy
 # between different sources. It accepts four values: recurse, aggregate, overwrite,
@@ -584,7 +599,7 @@ file_buffer_size: <%= @master_file_buffer_size %>
 # will verwrite elements according the order in which they are processed. This is
 # behavior of the 2014.1 branch and earlier. Smart guesses the best strategy based
 # on the "renderer" setting and is the default value.
-#pillar_source_merging_strategy: smart
+pillar_source_merging_strategy: <%= @master_pillar_source_merging_strategy %>
 
 
 #####          Syndic settings       #####
@@ -599,11 +614,11 @@ file_buffer_size: <%= @master_file_buffer_size %>
 
 # Set the order_masters setting to True if this master will command lower
 # masters' syndic interfaces.
-#order_masters: False
+order_masters: <%= @master_order_masters %>
 
 # If this master will be running a salt syndic daemon, syndic_master tells
 # this master where to receive commands from.
-#syndic_master: masterofmaster
+syndic_master: <%= @master_syndic_master %>
 
 # This is the 'ret_port' of the MasterOfMaster:
 #syndic_master_port: 4506
@@ -638,6 +653,7 @@ file_buffer_size: <%= @master_file_buffer_size %>
 #
 # This is not recommended, since it would allow anyone who gets root on any
 # single minion to instantly have root on all of the minions!
+peer: <%= @master_peer %>
 
 # Minions can also be allowed to execute runners from the salt master.
 # Since executing a runner from the minion could be considered a security risk,
@@ -705,8 +721,8 @@ log_level_logfile: <%= @master_log_level_logfile %>
 
 # The date and time format used in log messages. Allowed date/time formating
 # can be seen here: http://docs.python.org/library/time.html#time.strftime
-#log_datefmt: '%H:%M:%S'
-#log_datefmt_logfile: '%Y-%m-%d %H:%M:%S'
+log_datefmt: <%= @master_log_datefmt %>
+log_datefmt_logfile: <%= @master_log_datefmt_logfile %>
 
 # The format of the console logging messages. Allowed formatting options can
 # be seen here: http://docs.python.org/library/logging.html#logrecord-attributes
@@ -725,7 +741,7 @@ log_level_logfile: <%= @master_log_level_logfile %>
 #log_fmt_console: '%(colorlevel)s %(colormsg)s'
 #log_fmt_console: '[%(levelname)-8s] %(message)s'
 #
-#log_fmt_logfile: '%(asctime)s,%(msecs)03.0f [%(name)-17s][%(levelname)-8s] %(message)s'
+log_fmt_logfile: <%= @master_log_fmt_logfile %>
 
 # This can be used to control logging levels more specificically.  This
 # example sets the main salt library at the 'warning' level, but sets
@@ -734,7 +750,7 @@ log_level_logfile: <%= @master_log_level_logfile %>
 #     'salt': 'warning'
 #     'salt.modules': 'debug'
 #
-#log_granular_levels: {}
+log_granular_levels: <%= @master_log_granular_levels %>
 
 
 #####         Node Groups           ######
@@ -744,14 +760,14 @@ log_level_logfile: <%= @master_log_level_logfile %>
 #nodegroups:
 #  group1: 'L@foo.domain.com,bar.domain.com,baz.domain.com and bl*.domain.com'
 #  group2: 'G@os:Debian and foo.domain.com'
-
+nodegroups: <%= @master_nodegroups %>
 
 #####     Range Cluster settings     #####
 ##########################################
 # The range server (and optional port) that serves your cluster information
 # https://github.com/ytoolshed/range/wiki/%22yamlfile%22-module-file-spec
 #
-#range_server: range:80
+range_server: <%= @master_range_server %>
 
 
 #####  Windows Software Repo settings #####
