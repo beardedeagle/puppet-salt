@@ -119,10 +119,12 @@ inherits salt::params {
   # mess everything up.  You can read about this at:
   # http://docs.puppetlabs.com/puppet/2.7/reference/lang_containment.html#known-issues
   anchor { 'salt::master::begin': }
-
   anchor { 'salt::master::end': }
 
-  Anchor['salt::master::begin'] -> Class['::salt::master::install'] -> Class['::salt::master::config'
-    ] ~> Class['::salt::master::service'] -> Anchor['salt::master::end']
+  Anchor['salt::master::begin'] ->
+    Class['salt::master::install'] ->
+    Class['salt::master::config'] ->
+    Class['salt::master::service'] ->
+  Anchor['salt::master::end']
 
 }
