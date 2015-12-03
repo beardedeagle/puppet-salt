@@ -1,10 +1,10 @@
-<% if @operatingsystemmajrelease == 7 %>
+<% if @operatingsystemmajrelease == '7' %>
 [saltstack-repo]
 name=SaltStack repo for RHEL/CentOS 7
 baseurl=https://repo.saltstack.com/yum/rhel7
 enabled=1
 gpgcheck=0
-<% elsif @operatingsystemmajrelease == 6 %>
+<% elsif @operatingsystemmajrelease == '6' %>
 [saltstack-repo]
 name=SaltStack repo for RHEL/CentOS 6
 baseurl=https://repo.saltstack.com/yum/rhel6
