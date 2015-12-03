@@ -4,7 +4,7 @@ class salt::params {
     'redhat' : {
       $repo_file_manage       = true
       $repo_file              = '/etc/yum.repos.d/saltstack.repo'
-      $repo_file_template     = 'salt/master.erb'
+      $repo_file_template     = 'salt/repo.erb'
 
       $master_config_manage   = true
       $master_config          = '/etc/salt/master'

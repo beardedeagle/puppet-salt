@@ -111,6 +111,7 @@ class salt::master (
   $master_nodegroups                      = $salt::params::master_nodegroups,
   $master_range_server                    = $salt::params::master_range_server,)
 inherits salt::params {
+  include 'salt::master::repo'
   include 'salt::master::install'
   include 'salt::master::config'
   include 'salt::master::service'
@@ -122,6 +123,7 @@ inherits salt::params {
   anchor { 'salt::master::end': }
 
   Anchor['salt::master::begin'] ->
+    Class['salt::master::repo'] ->
     Class['salt::master::install'] ->
     Class['salt::master::config'] ->
     Class['salt::master::service'] ->
