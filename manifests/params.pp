@@ -1,14 +1,14 @@
 # This class will set all parameters for salt master, minion, cloud, api, syndic and ssh
-class puppet-salt::params {
+class salt::params {
   case $::osfamily {
     'redhat' : {
       $repo_file_manage       = true
       $repo_file              = '/etc/yum.repos.d/saltstack.repo'
-      $repo_file_template     = 'puppet-salt/repo.erb'
+      $repo_file_template     = 'salt/master.erb'
 
       $master_config_manage   = true
       $master_config          = '/etc/salt/master'
-      $master_config_template = 'puppet-salt/master.erb'
+      $master_config_template = 'salt/master.erb'
       $master_package_name    = 'salt-master'
       $master_package_ensure  = 'present'
       $master_service_name    = 'salt-master'
@@ -18,44 +18,18 @@ class puppet-salt::params {
 
       $minion_config_manage   = true
       $minion_config          = '/etc/salt/minion'
-      $minion_config_template = 'puppet-salt/minion.erb'
+      $minion_config_template = 'salt/minion.erb'
       $minion_package_name    = 'salt-minion'
       $minion_package_ensure  = 'present'
       $minion_service_name    = 'salt-minion'
       $minion_service_ensure  = 'running'
       $minion_service_manage  = true
       $minion_service_enable  = true
-
-#      $cloud_config_manage    = true
-#      $cloud_config           = '/etc/salt/cloud'
-#      $cloud_config_template  = 'puppet-salt/cloud.erb'
-#      $cloud_package_name     = 'salt-cloud'
-#      $cloud_package_ensure   = 'present'
-
-#      $api_package_name       = 'salt-api'
-#      $api_package_ensure     = 'present'
-#      $api_service_name       = 'salt-api'
-#      $api_service_ensure     = 'running'
-#      $api_service_manage     = true
-#      $api_service_enable     = true
-
-#      $syndic_package_name    = 'salt-syndic'
-#      $syndic_package_ensure  = 'present'
-#      $syndic_service_name    = 'salt-syndic'
-#      $syndic_service_ensure  = 'running'
-#      $syndic_service_manage  = true
-#      $syndic_service_enable  = true
-
-#      $ssh_config_manage      = true
-#      $ssh_config             = '/etc/salt/roster'
-#      $ssh_config_template    = 'puppet-salt/roster.erb'
-#      $ssh_package_name       = 'salt-ssh'
-#      $ssh_package_ensure     = 'present'
     }
     'archlinux' : {
       $minion_config_manage   = true
       $minion_config          = '/etc/salt/minion'
-      $minion_config_template = 'puppet-salt/minion.erb'
+      $minion_config_template = 'salt/minion.erb'
       $minion_package_name    = 'salt'
       $minion_package_ensure  = 'present'
       $minion_service_name    = 'salt-minion'
@@ -65,7 +39,7 @@ class puppet-salt::params {
 
       $master_config_manage   = true
       $master_config          = '/etc/salt/master'
-      $master_config_template = 'puppet-salt/master.erb'
+      $master_config_template = 'salt/master.erb'
       $master_package_name    = 'salt'
       $master_package_ensure  = 'present'
       $master_service_name    = 'salt-master'
@@ -76,7 +50,7 @@ class puppet-salt::params {
     'suse' : {
       $minion_config_manage   = true
       $minion_config          = '/etc/salt/minion'
-      $minion_config_template = 'puppet-salt/minion.erb'
+      $minion_config_template = 'salt/minion.erb'
       $minion_package_name    = 'salt-minion'
       $minion_package_ensure  = 'present'
       $minion_service_name    = 'salt-minion'
@@ -86,7 +60,7 @@ class puppet-salt::params {
 
       $master_config_manage   = true
       $master_config          = '/etc/salt/master'
-      $master_config_template = 'puppet-salt/master.erb'
+      $master_config_template = 'salt/master.erb'
       $master_package_name    = 'salt-master'
       $master_package_ensure  = 'present'
       $master_service_name    = 'salt-master'
@@ -97,7 +71,7 @@ class puppet-salt::params {
     'debian' : {
       $minion_config_manage   = true
       $minion_config          = '/etc/salt/minion'
-      $minion_config_template = 'puppet-salt/minion.erb'
+      $minion_config_template = 'salt/minion.erb'
       $minion_package_name    = 'salt-minion'
       $minion_package_ensure  = 'present'
       $minion_service_name    = 'salt-minion'
@@ -107,7 +81,7 @@ class puppet-salt::params {
 
       $master_config_manage   = true
       $master_config          = '/etc/salt/master'
-      $master_config_template = 'puppet-salt/master.erb'
+      $master_config_template = 'salt/master.erb'
       $master_package_name    = 'salt-master'
       $master_package_ensure  = 'present'
       $master_service_name    = 'salt-master'
@@ -138,7 +112,7 @@ class puppet-salt::params {
   $master_ret_port                = 4506
   $master_pid_file                = '/var/run/salt-master.pid'
   $master_root_dir                = '/'
-  $master_pki_dir                 = ' /etc/salt/pki/master'
+  $master_pki_dir                 = '/etc/salt/pki/master'
   $master_cachedir                = '/var/cache/salt/master'
   $master_extension_modules       = '/var/cache/salt/extmods'
   $master_verify_env              = true

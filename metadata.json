@@ -8,6 +8,9 @@
   "project_page": "https://github.com/beardedeagle/puppet-salt",
   "issues_url": "https://github.com/beardedeagle/puppet-salt/issues",
   "dependencies": [
-    {"name":"puppetlabs-stdlib","version_requirement":">= 2.2.1"}
+    {
+      "name": "puppetlabs-stdlib",
+      "version_requirement": ">= 2.2.1"
+    }
   ]
 }
