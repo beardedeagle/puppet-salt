@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'salt' do
+describe 'puppet-salt' do
 
   context 'on unsupported distributions' do
     let(:facts) {{ :osfamily => 'Unsupported' }}
@@ -16,12 +16,12 @@ describe 'salt' do
           :osfamily => distro,
         }}
 
-      it { should contain_class('salt::master::install') }
-      it { should contain_class('salt::master::config') }
-      it { should contain_class('salt::master::service') }
-      it { should contain_class('salt::minion::install') }
-      it { should contain_class('salt::minion::config') }
-      it { should contain_class('salt::minion::service') }
+      it { should contain_class('puppet-salt::master::install') }
+      it { should contain_class('puppet-salt::master::config') }
+      it { should contain_class('puppet-salt::master::service') }
+      it { should contain_class('puppet-salt::minion::install') }
+      it { should contain_class('puppet-salt::minion::config') }
+      it { should contain_class('puppet-salt::minion::service') }
 
       ##
       ## salt-master config file
@@ -61,7 +61,7 @@ describe 'salt' do
       end
 
       ##
-      ## salt::master::install
+      ## puppet-salt::master::install
       ##
       it 'installs the salt-master package' do
         should contain_package('salt-master').with(
@@ -70,7 +70,7 @@ describe 'salt' do
         )
       end
       ##
-      ## salt::minion::install
+      ## puppet-salt::minion::install
       ##
       it 'installs the salt-minion package' do
         should contain_package('salt-minion').with(
@@ -86,12 +86,12 @@ describe 'salt' do
           :osfamily => distro,
         }}
 
-      it { should contain_class('salt::master::install') }
-      it { should contain_class('salt::master::config') }
-      it { should contain_class('salt::master::service') }
-      it { should contain_class('salt::minion::install') }
-      it { should contain_class('salt::minion::config') }
-      it { should contain_class('salt::minion::service') }
+      it { should contain_class('puppet-salt::master::install') }
+      it { should contain_class('puppet-salt::master::config') }
+      it { should contain_class('puppet-salt::master::service') }
+      it { should contain_class('puppet-salt::minion::install') }
+      it { should contain_class('puppet-salt::minion::config') }
+      it { should contain_class('puppet-salt::minion::service') }
 
       ##
       ## salt-master config file
