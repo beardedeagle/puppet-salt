@@ -13,14 +13,12 @@
 <% if @minion_default_include %>
 default_include: <%= @minion_default_include %>
 <% end %>
-
 # Set the location of the salt master server. If the master server cannot be
 # resolved, then the minion will fail to start.
 #master: salt
 <% if @minion_master %>
 master: <%= @minion_master %>
 <% end %>
-
 # If multiple masters are specified in the 'master' setting, the default behavior
 # is to always try to connect to them in the order they are listed. If random_master is
 # set to True, the order will be randomized instead. This can be helpful in distributing
@@ -30,7 +28,6 @@ master: <%= @minion_master %>
 <% if @minion_random_master %>
 random_master: <%= @minion_random_master %>
 <% end %>
-
 # Minions can connect to multiple masters simultaneously (all masters
 # are "hot"), or can be configured to failover if a master becomes
 # unavailable.  Multiple hot masters are configured by setting this
@@ -41,7 +38,6 @@ random_master: <%= @minion_random_master %>
 <% if @minion_master_type %>
 master_type: <%= @minion_master_type %>
 <% end %>
-
 # Poll interval in seconds for checking if the master is still there.  Only
 # respected if master_type above is "failover". To disable the interval entirely,
 # set the value to -1. (This may be necessary on machines which have high numbers
@@ -50,13 +46,11 @@ master_type: <%= @minion_master_type %>
 <% if @minion_master_alive_interval %>
 master_alive_interval: <%= @minion_master_alive_interval %>
 <% end %>
-
 # Set whether the minion should connect to the master via IPv6:
 #ipv6: False
 <% if @minion_ipv6 %>
 ipv6: <%= @minion_ipv6 %>
 <% end %>
-
 # Set the number of seconds to wait before attempting to resolve
 # the master hostname if name resolution fails. Defaults to 30 seconds.
 # Set to zero if the minion should shutdown and not retry.
@@ -64,19 +58,16 @@ ipv6: <%= @minion_ipv6 %>
 <% if @minion_retry_dns %>
 retry_dns: <%= @minion_retry_dns %>
 <% end %>
-
 # Set the port used by the master reply and authentication server.
 #master_port: 4506
 <% if @minion_master_port %>
 master_port: '<%= @minion_master_port %>'
 <% end %>
-
 # The user to run salt.
 #user: root
 <% if @minion_user %>
 user: <%= @minion_user %>
 <% end %>
-
 # Setting sudo_user will cause salt to run all execution modules under an sudo
 # to the user given in sudo_user.  The user under which the salt minion process
 # itself runs will still be that provided in the user config above, but all
@@ -85,26 +76,22 @@ user: <%= @minion_user %>
 <% if @minion_sudo_user %>
 sudo_user: '<%= @minion_sudo_user %>'
 <% end %>
-
 # Specify the location of the daemon process ID file.
 #pidfile: /var/run/salt-minion.pid
 <% if @minion_pidfile %>
 pidfile: <%= @minion_pidfile %>
 <% end %>
-
 # The root directory prepended to these options: pki_dir, cachedir, log_file,
 # sock_dir, pidfile.
 #root_dir: /
 <% if @minion_root_dir %>
 root_dir: <%= @minion_root_dir %>
 <% end %>
-
 # The directory to store the pki information in
 #pki_dir: /etc/salt/pki/minion
 <% if @minion_pki_dir %>
 pki_dir: <%= @minion_pki_dir %>
 <% end %>
-
 # Explicitly declare the id for this minion to use, if left commented the id
 # will be the hostname as returned by the python call: socket.getfqdn()
 # Since salt uses detached ids it is possible to run multiple minions on the
@@ -114,7 +101,6 @@ pki_dir: <%= @minion_pki_dir %>
 <% if @minion_id %>
 id: <%= @minion_id %>
 <% end %>
-
 # Append a domain to a hostname in the event that it does not exist.  This is
 # useful for systems where socket.getfqdn() does not actually result in a
 # FQDN (for instance, Solaris).
@@ -122,7 +108,6 @@ id: <%= @minion_id %>
 <% if @minion_append_domain %>
 append_domain: <%= @minion_append_domain %>
 <% end %>
-
 # Custom static grains for this minion can be specified here and used in SLS
 # files just like all other grains. This example sets 4 custom grains, with
 # the 'roles' grain having two values that can be matched against.
@@ -140,13 +125,11 @@ append_domain: <%= @minion_append_domain %>
 <% if @minion_cachedir %>
 cachedir: <%= @minion_cachedir %>
 <% end %>
-
 # Verify and set permissions on configuration directories at startup.
 #verify_env: True
 <% if @minion_verify_env %>
 verify_env: <%= @minion_verify_env %>
 <% end %>
-
 # The minion can locally cache the return data from jobs sent to it, this
 # can be a good way to keep track of jobs the minion has executed
 # (on the minion side). By default this feature is disabled, to enable, set
@@ -155,13 +138,11 @@ verify_env: <%= @minion_verify_env %>
 <% if @minion_cache_jobs %>
 cache_jobs: <%= @minion_cache_jobs %>
 <% end %>
-
 # Set the directory used to hold unix sockets.
 #sock_dir: /var/run/salt/minion
 <% if @minion_sock_dir %>
 sock_dir: <%= @minion_sock_dir %>
 <% end %>
-
 # Set the default outputter used by the salt-call command. The default is
 # "nested".
 #output: nested
@@ -175,14 +156,12 @@ output: <%= @minion_output %>
 <% if @minion_color %>
 color: <%= @minion_color %>
 <% end %>
-
 # Do not strip off the colored output from nested results and state outputs
 # (true by default).
 # strip_colors: False
 <% if @minion_strip_colors %>
 strip_colors: <%= @minion_strip_colors %>
 <% end %>
-
 # Backup files that are replaced by file.managed and file.recurse under
 # 'cachedir'/file_backups relative to their original location and appended
 # with a timestamp. The only valid setting is "minion". Disabled by default.
@@ -197,7 +176,6 @@ strip_colors: <%= @minion_strip_colors %>
 <% if @minion_backup_mode %>
 backup_mode: <%= @minion_backup_mode %>
 <% end %>
-
 # When waiting for a master to accept the minion's public key, salt will
 # continuously attempt to reconnect until successful. This is the time, in
 # seconds, between those reconnection attempts.
@@ -205,7 +183,6 @@ backup_mode: <%= @minion_backup_mode %>
 <% if @minion_acceptance_wait_time %>
 acceptance_wait_time: <%= @minion_acceptance_wait_time %>
 <% end %>
-
 # If this is nonzero, the time between reconnection attempts will increase by
 # acceptance_wait_time seconds per iteration, up to this maximum. If this is
 # set to zero, the time between reconnection attempts will stay constant.
@@ -213,14 +190,12 @@ acceptance_wait_time: <%= @minion_acceptance_wait_time %>
 <% if @minion_acceptance_wait_time_max %>
 acceptance_wait_time_max: <%= @minion_acceptance_wait_time_max %>
 <% end %>
-
 # If the master rejects the minion's public key, retry instead of exiting.
 # Rejected keys will be handled the same as waiting on acceptance.
 #rejected_retry: False
 <% if @minion_rejected_retry %>
 rejected_retry: <%= @minion_rejected_retry %>
 <% end %>
-
 # When the master key changes, the minion will try to re-auth itself to receive
 # the new master key. In larger environments this can cause a SYN flood on the
 # master because all minions try to re-auth immediately. To prevent this and
@@ -230,7 +205,6 @@ rejected_retry: <%= @minion_rejected_retry %>
 <% if @minion_random_reauth_delay %>
 random_reauth_delay: <%= @minion_random_reauth_delay %>
 <% end %>
-
 # When waiting for a master to accept the minion's public key, salt will
 # continuously attempt to reconnect until successful. This is the timeout value,
 # in seconds, for each individual attempt. After this timeout expires, the minion
@@ -240,27 +214,23 @@ random_reauth_delay: <%= @minion_random_reauth_delay %>
 <% if @minion_auth_timeout %>
 auth_timeout: <%= @minion_auth_timeout %>
 <% end %>
-
 # Number of consecutive SaltReqTimeoutError that are acceptable when trying to
 # authenticate.
 #auth_tries: 7
 <% if @minion_auth_tries %>
 auth_tries: <%= @minion_auth_tries %>
 <% end %>
-
 # If authentication fails due to SaltReqTimeoutError during a ping_interval,
 # cause sub minion process to restart.
 #auth_safemode: False
 <% if @minion_auth_safemode %>
 auth_safemode: <%= @minion_auth_safemode %>
 <% end %>
-
 # Ping Master to ensure connection is alive (minutes).
 #ping_interval: 0
 <% if @minion_ping_interval %>
 ping_interval: <%= @minion_ping_interval %>
 <% end %>
-
 # To auto recover minions if master changes IP address (DDNS)
 #    auth_tries: 10
 #    auth_safemode: False
@@ -348,7 +318,6 @@ recon_randomize: <%= @minion_recon_randomize %>
 <% if @minion_loop_interval %>
 loop_interval: <%= @minion_loop_interval %>
 <% end %>
-
 # The grains_refresh_every setting allows for a minion to periodically check
 # its grains to see if they have changed and, if so, to inform the master
 # of the new grains. This operation is moderately expensive, therefore
@@ -363,13 +332,11 @@ loop_interval: <%= @minion_loop_interval %>
 <% if @minion_grains_refresh_every %>
 grains_refresh_every: <%= @minion_grains_refresh_every %>
 <% end %>
-
 # Cache grains on the minion. Default is False.
 #grains_cache: False
 <% if @minion_grains_cache %>
 grains_cache: <%= @minion_grains_cache %>
 <% end %>
-
 # Grains cache expiration, in seconds. If the cache file is older than this
 # number of seconds then the grains cache will be dumped and fully re-populated
 # with fresh data. Defaults to 5 minutes. Will have no effect if 'grains_cache'
@@ -378,14 +345,12 @@ grains_cache: <%= @minion_grains_cache %>
 <% if @minion_grains_cache_expiration %>
 grains_cache_expiration: <%= @minion_grains_cache_expiration %>
 <% end %>
-
 # Windows platforms lack posix IPC and must rely on slower TCP based inter-
 # process communications. Set ipc_mode to 'tcp' on such systems
 #ipc_mode: ipc
 <% if @minion_ipc_mode %>
 ipc_mode: <%= @minion_ipc_mode %>
 <% end %>
-
 # Overwrite the default tcp ports used by the minion when in tcp mode
 #tcp_pub_port: 4510
 #tcp_pull_port: 4511
@@ -395,7 +360,6 @@ tcp_pub_port: <%= @minion_tcp_pub_port %>
 <% if @minion_tcp_pull_port %>
 tcp_pull_port: <%= @minion_tcp_pull_port %>
 <% end %>
-
 # Passing very large events can cause the minion to consume large amounts of
 # memory. This value tunes the maximum size of a message allowed onto the
 # minion event bus. The value is expressed in bytes.
@@ -403,7 +367,6 @@ tcp_pull_port: <%= @minion_tcp_pull_port %>
 <% if @minion_max_event_size %>
 max_event_size: <%= @minion_max_event_size %>
 <% end %>
-
 # To detect failed master(s) and fire events on connect/disconnect, set
 # master_alive_interval to the number of seconds to poll the masters for
 # connection events.
@@ -487,7 +450,6 @@ cython_enable: <%= @minion_cython_enable %>
 <% if @minion_modules_max_memory %>
 modules_max_memory: <%= @minion_modules_max_memory %>
 <% end %>
-
 #####    State Management Settings    #####
 ###########################################
 # The state management system executes all of the state templates on the minion
@@ -564,7 +526,6 @@ startup_states: <%= @minion_startup_states %>
 <% if @minion_top_file %>
 top_file: <%= @minion_top_file %>
 <% end %>
-
 # Automatically aggregate all states that have support for mod_aggregate by
 # setting to True. Or pass a list of state module names to automatically
 # aggregate just those types.
@@ -576,7 +537,6 @@ top_file: <%= @minion_top_file %>
 <% if @minion_state_aggregate %>
 state_aggregate: <%= @minion_state_aggregate %>
 <% end %>
-
 #####     File Directory Settings    #####
 ##########################################
 # The Salt Minion can redirect all file server operations to a local directory,
@@ -592,7 +552,6 @@ state_aggregate: <%= @minion_state_aggregate %>
 <% if @minion_file_client %>
 file_client: <%= @minion_file_client %>
 <% end %>
-
 # The file directory works on environments passed to the minion, each environment
 # can have multiple root directories, the subdirectories in the multiple file
 # roots cannot match, otherwise the downloaded files will not be able to be
@@ -614,7 +573,6 @@ file_client: <%= @minion_file_client %>
 <% if @minion_file_roots %>
 file_roots: <%= @minion_file_roots %>
 <% end %>
-
 # By default, the Salt fileserver recurses fully into all defined environments
 # to attempt to find files. To limit this behavior so that the fileserver only
 # traverses directories with SLS files and special Salt directories like _modules,
@@ -625,7 +583,6 @@ file_roots: <%= @minion_file_roots %>
 <% if @minion_fileserver_limit_traversal %>
 fileserver_limit_traversal: <%= @minion_fileserver_limit_traversal %>
 <% end %>
-
 # The hash_type is the hash to use when discovering the hash of a file in
 # the local fileserver. The default is md5, but sha1, sha224, sha256, sha384
 # and sha512 are also supported.
@@ -636,7 +593,6 @@ fileserver_limit_traversal: <%= @minion_fileserver_limit_traversal %>
 <% if @minion_hash_type %>
 hash_type: <%= @minion_hash_type %>
 <% end %>
-
 # The Salt pillar is searched for locally if file_client is set to local. If
 # this is the case, and pillar data is defined, then the pillar_roots need to
 # also be configured on the minion:
@@ -648,7 +604,6 @@ hash_type: <%= @minion_hash_type %>
 <% if @minion_pillar_roots %>
 pillar_roots: <%= @minion_pillar_roots %>
 <% end %>
-
 ######        Security settings       #####
 ###########################################
 # Enable "open mode", this mode still maintains encryption, but turns off
@@ -659,7 +614,6 @@ pillar_roots: <%= @minion_pillar_roots %>
 <% if @minion_open_mode %>
 open_mode: <%= @minion_open_mode %>
 <% end %>
-
 # Enable permissive access to the salt keys.  This allows you to run the
 # master or minion as root, but have a non-root group be given access to
 # your pki_dir.  To make the access explicit, root must belong to the group
@@ -668,7 +622,6 @@ open_mode: <%= @minion_open_mode %>
 <% if @minion_permissive_pki_access %>
 permissive_pki_access: <%= @minion_permissive_pki_access %>
 <% end %>
-
 # The state_verbose and state_output settings can be used to change the way
 # state system data is printed to the display. By default all data is printed.
 # The state_verbose setting can be set to True or False, when set to False
@@ -677,7 +630,6 @@ permissive_pki_access: <%= @minion_permissive_pki_access %>
 <% if @minion_state_verbose %>
 state_verbose: <%= @minion_state_verbose %>
 <% end %>
-
 # The state_output setting changes if the output is the full multi line
 # output for each changed state if set to 'full', but if set to 'terse'
 # the output will be shortened to a single line.
@@ -685,7 +637,6 @@ state_verbose: <%= @minion_state_verbose %>
 <% if @minion_state_output %>
 state_output: <%= @minion_state_output %>
 <% end %>
-
 # The state_output_diff setting changes whether or not the output from
 # successful states is returned. Useful when even the terse output of these
 # states is cluttering the logs. Set it to True to ignore them.
@@ -693,14 +644,12 @@ state_output: <%= @minion_state_output %>
 <% if @minion_state_output_diff %>
 state_output_diff: <%= @minion_state_output_diff %>
 <% end %>
-
 # The state_output_profile setting changes whether profile information
 # will be shown for each state run.
 #state_output_profile: True
 <% if @minion_state_output_profile %>
 state_output_profile: <%= @minion_state_output_profile %>
 <% end %>
-
 # Fingerprint of the master public key to validate the identity of your Salt master
 # before the initial key exchange. The master fingerprint can be found by running
 # "salt-key -F master" on the Salt master.
@@ -708,8 +657,6 @@ state_output_profile: <%= @minion_state_output_profile %>
 <% if @minion_master_finger %>
 master_finger: <%= @minion_master_finger %>
 <% end %>
-
-
 ######         Thread settings        #####
 ###########################################
 # Disable multiprocessing support, by default when a minion receives a
@@ -718,7 +665,6 @@ master_finger: <%= @minion_master_finger %>
 <% if @minion_multiprocessing %>
 multiprocessing: <%= @minion_multiprocessing %>
 <% end %>
-
 #####         Logging settings       #####
 ##########################################
 # The location of the minion log file
@@ -738,7 +684,6 @@ log_file: <%= @minion_log_file %>
 <% if @minion_key_logfile %>
 key_logfile: <%= @minion_key_logfile %>
 <% end %>
-
 # The level of messages to send to the console.
 # One of 'garbage', 'trace', 'debug', info', 'warning', 'error', 'critical'.
 #
@@ -750,7 +695,6 @@ key_logfile: <%= @minion_key_logfile %>
 <% if @minion_log_level %>
 log_level: <%= @minion_log_level %>
 <% end %>
-
 # The level of messages to send to the log file.
 # One of 'garbage', 'trace', 'debug', info', 'warning', 'error', 'critical'.
 # If using 'log_granular_levels' this must be set to the highest desired level.
@@ -759,7 +703,6 @@ log_level: <%= @minion_log_level %>
 <% if @minion_log_level_logfile %>
 log_level_logfile: <%= @minion_log_level_logfile %>
 <% end %>
-
 # The date and time format used in log messages. Allowed date/time formating
 # can be seen here: http://docs.python.org/library/time.html#time.strftime
 #log_datefmt: '%H:%M:%S'
@@ -770,7 +713,6 @@ log_datefmt: '<%= @minion_log_datefmt %>'
 <% if @minion_log_datefmt_logfile %>
 log_datefmt_logfile: '<%= @minion_log_datefmt_logfile %>'
 <% end %>
-
 # The format of the console logging messages. Allowed formatting options can
 # be seen here: http://docs.python.org/library/logging.html#logrecord-attributes
 #
@@ -792,7 +734,6 @@ log_datefmt_logfile: '<%= @minion_log_datefmt_logfile %>'
 <% if @minion_log_fmt_logfile %>
 log_fmt_logfile: '<%= @minion_log_fmt_logfile %>'
 <% end %>
-
 # This can be used to control logging levels more specificically.  This
 # example sets the main salt library at the 'warning' level, but sets
 # 'salt.modules' to log at the 'debug' level:
@@ -804,7 +745,6 @@ log_fmt_logfile: '<%= @minion_log_fmt_logfile %>'
 <% if @minion_log_granular_levels %>
 log_granular_levels: <%= @minion_log_granular_levels %>
 <% end %>
-
 # To diagnose issues with minions disconnecting or missing returns, ZeroMQ
 # supports the use of monitor sockets # to log connection events. This
 # feature requires ZeroMQ 4.0 or higher.
@@ -826,7 +766,6 @@ log_granular_levels: <%= @minion_log_granular_levels %>
 <% if @minion_zmq_monitor %>
 zmq_monitor: <%= @minion_zmq_monitor %>
 <% end %>
-
 ######      Module configuration      #####
 ###########################################
 # Salt allows for modules to be passed arbitrary configuration data, any data
@@ -868,7 +807,6 @@ update_url: <%= @minion_update_url %>
 <% if @minion_update_restart_services %>
 update_restart_services: <%= @minion_update_restart_services %>
 <% end %>
-
 ######      Keepalive settings        ######
 ############################################
 # ZeroMQ now includes support for configuring SO_KEEPALIVE if supported by
@@ -884,7 +822,6 @@ update_restart_services: <%= @minion_update_restart_services %>
 <% if @minion_tcp_keepalive %>
 tcp_keepalive: <%= @minion_tcp_keepalive %>
 <% end %>
-
 # How long before the first keepalive should be sent in seconds. Default 300
 # to send the first keepalive after 5 minutes, OS default (-1) is typically 7200 seconds
 # on Linux see /proc/sys/net/ipv4/tcp_keepalive_time.
@@ -892,14 +829,12 @@ tcp_keepalive: <%= @minion_tcp_keepalive %>
 <% if @minion_tcp_keepalive_idle %>
 tcp_keepalive_idle: <%= @minion_tcp_keepalive_idle %>
 <% end %>
-
 # How many lost probes are needed to consider the connection lost. Default -1
 # to use OS defaults, typically 9 on Linux, see /proc/sys/net/ipv4/tcp_keepalive_probes.
 #tcp_keepalive_cnt: -1
 <% if @minion_tcp_keepalive_cnt %>
 tcp_keepalive_cnt: <%= @minion_tcp_keepalive_cnt %>
 <% end %>
-
 # How often, in seconds, to send keepalives after the first one. Default -1 to
 # use OS defaults, typically 75 seconds on Linux, see
 # /proc/sys/net/ipv4/tcp_keepalive_intvl.
@@ -907,12 +842,10 @@ tcp_keepalive_cnt: <%= @minion_tcp_keepalive_cnt %>
 <% if @minion_tcp_keepalive_intvl %>
 tcp_keepalive_intvl: <%= @minion_tcp_keepalive_intvl %>
 <% end %>
-
 ######   Windows Software settings    ######
 ############################################
 # Location of the repository cache file on the master:
 #win_repo_cachefile: 'salt://win/repo/winrepo.p'
-
 
 ######      Returner  settings        ######
 ############################################
