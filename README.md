@@ -11,7 +11,6 @@
 4. [Usage - Configuration options and additional functionality](#usage)
 5. [Reference - An under-the-hood peek at what the module is doing and how](#reference)
 5. [Limitations - OS compatibility, etc.](#limitations)
-6. [Special Thanks](#special-thanks)
 
 # salt Puppet Module
 
@@ -118,7 +117,3 @@ This sets the file to write salt master configuration into.
 ##Limitations
 
 This module has been built on and tested against Puppet >= 3.8.4 and Ruby >=2.0.0.
-
-##Special Thanks
-
-Shout out to aboe76. This module would not be possible without the great work already done.

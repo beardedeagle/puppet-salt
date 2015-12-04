@@ -107,6 +107,7 @@ class salt::minion (
   $minion_tcp_keepalive_idle          = $salt::params::minion_tcp_keepalive_idle,
   $minion_tcp_keepalive_cnt           = $salt::params::minion_tcp_keepalive_cnt,)
 inherits salt::params {
+  include 'salt::minion::repo'
   include 'salt::minion::install'
   include 'salt::minion::config'
   include 'salt::minion::service'
@@ -118,6 +119,7 @@ inherits salt::params {
   anchor { 'salt::minion::end': }
 
   Anchor['salt::minion::begin'] ->
+    Class['salt::minion::repo'] ->
     Class['salt::minion::install'] ->
     Class['salt::minion::config'] ->
     Class['salt::minion::service'] ->
