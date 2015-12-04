@@ -12,7 +12,7 @@ class salt::ssh (
   $ssh_package_name                       = $salt::params::ssh_package_name,
   $ssh_package_ensure                     = $salt::params::ssh_package_ensure,)
 inherits salt::params {
-  include 'salt::ssh::repo'
+  require master
   include 'salt::ssh::install'
   include 'salt::ssh::config'
 
@@ -23,7 +23,6 @@ inherits salt::params {
   anchor { 'salt::ssh::end': }
 
   Anchor['salt::ssh::begin'] ->
-    Class['salt::ssh::repo'] ->
     Class['salt::ssh::install'] ->
     Class['salt::ssh::config'] ->
   Anchor['salt::ssh::end']

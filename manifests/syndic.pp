@@ -13,7 +13,7 @@ class salt::syndic (
   $syndic_service_manage                  = $salt::params::syndic_service_manage,
   $syndic_service_enable                  = $salt::params::syndic_service_enable,)
 inherits salt::params {
-  include 'salt::syndic::repo'
+  require master
   include 'salt::syndic::install'
   include 'salt::syndic::service'
 
@@ -24,7 +24,6 @@ inherits salt::params {
   anchor { 'salt::syndic::end': }
 
   Anchor['salt::syndic::begin'] ->
-    Class['salt::syndic::repo'] ->
     Class['salt::syndic::install'] ->
     Class['salt::syndic::service'] ->
   Anchor['salt::syndic::end']

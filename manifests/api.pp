@@ -13,7 +13,7 @@ class salt::api (
   $api_service_manage                  = $salt::params::api_service_manage,
   $api_service_enable                  = $salt::params::api_service_enable,)
 inherits salt::params {
-  include 'salt::api::repo'
+  require master
   include 'salt::api::install'
   include 'salt::api::service'
 
@@ -24,7 +24,6 @@ inherits salt::params {
   anchor { 'salt::api::end': }
 
   Anchor['salt::api::begin'] ->
-    Class['salt::api::repo'] ->
     Class['salt::api::install'] ->
     Class['salt::api::service'] ->
   Anchor['salt::api::end']

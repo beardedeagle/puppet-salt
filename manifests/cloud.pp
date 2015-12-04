@@ -21,7 +21,7 @@ class salt::cloud (
   $cloud_log_granular_levels              = $salt::params::cloud_log_granular_levels,
   $cloud_delete_sshkeys                   = $salt::params::cloud_delete_sshkeys,)
 inherits salt::params {
-  include 'salt::cloud::repo'
+  require master
   include 'salt::cloud::install'
   include 'salt::cloud::config'
 
@@ -32,7 +32,6 @@ inherits salt::params {
   anchor { 'salt::cloud::end': }
 
   Anchor['salt::cloud::begin'] ->
-    Class['salt::cloud::repo'] ->
     Class['salt::cloud::install'] ->
     Class['salt::cloud::config'] ->
   Anchor['salt::cloud::end']
