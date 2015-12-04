@@ -141,6 +141,7 @@ class salt::params {
   $master_pki_dir                         = undef
   $master_cachedir                        = undef
   $master_extension_modules               = undef
+  $master_module_dirs                     = undef
   $master_verify_env                      = undef
   $master_keep_jobs                       = undef
   $master_timeout                         = undef
@@ -161,6 +162,7 @@ class salt::params {
   $master_ping_on_rotate                  = undef
   $master_preserve_minion_cache           = undef
   $master_con_cache                       = undef
+  $master_include                         = undef
 
   # Security settings
   $master_open_mode                       = undef
@@ -212,6 +214,8 @@ class salt::params {
   $master_fileserver_followsymlinks       = undef
   $master_fileserver_ignoresymlinks       = undef
   $master_fileserver_limit_traversal      = undef
+  $master_fileserver_events               = undef
+  $master_gitfs_provider                  = undef
   $master_gitfs_remotes                   = undef
   $master_gitfs_ssl_verify                = undef
   $master_gitfs_root                      = undef
@@ -219,6 +223,8 @@ class salt::params {
   # Pillar settings
   $master_pillar_roots                    = undef
   $master_ext_pillar                      = undef
+  $master_ext_pillar_first                = undef
+  $master_pillar_gitfs_ssl_verify         = undef
   $master_pillar_opts                     = undef
   $master_pillar_safe_render_error        = undef
   $master_pillar_source_merging_strategy  = undef
@@ -226,9 +232,16 @@ class salt::params {
   # Syndic settings
   $master_order_masters                   = undef
   $master_syndic_master                   = undef
+  $master_syndic_master_port              = undef
+  $master_syndic_pidfile                  = undef
+  $master_syndic_log_file                 = undef
 
   # Peer Publish settings
   $master_peer                            = undef
+  $master_peer_run                        = undef
+
+  # Mine settings
+  $master_mine_get                        = undef
 
   # Logging settings
   $master_log_file                        = undef
@@ -245,6 +258,18 @@ class salt::params {
 
   # Range Cluster settings
   $master_range_server                    = undef
+
+  # Windows Software Repo settings
+  $master_winrepo_dir_ng                  = undef
+  $master_winrepo_remotes_ng              = undef
+
+  # Windows Software Repo settings - Pre 2015.8
+  $master_winrepo_dir                     = undef
+  $master_winrepo_mastercachefile         = undef
+  $master_winrepo_remotes                 = undef
+
+  # Returner settings
+  $master_return                          = undef
 
   ###############################################
   # minion defaults:
@@ -265,6 +290,7 @@ class salt::params {
   $minion_pki_dir                         = undef
   $minion_id                              = undef
   $minion_append_domain                   = undef
+  $minion_grains                          = undef
   $minion_cachedir                        = undef
   $minion_verify_env                      = undef
   $minion_cache_jobs                      = undef
@@ -292,6 +318,7 @@ class salt::params {
   $minion_tcp_pub_port                    = undef
   $minion_tcp_pull_port                   = undef
   $minion_max_event_size                  = undef
+  $minion_include                         = undef
 
   # Minion module management
   $minion_disable_modules                 = undef
@@ -350,6 +377,9 @@ class salt::params {
 
   # Module configuration
   $minion_test                            = undef
+  $minion_test_foo                        = undef
+  $minion_test_bar                        = undef
+  $minion_test_baz                        = undef
 
   # Update settings
   $minion_update_url                      = undef
@@ -360,6 +390,12 @@ class salt::params {
   $minion_tcp_keepalive_idle              = undef
   $minion_tcp_keepalive_cnt               = undef
   $minion_tcp_keepalive_intvl             = undef
+
+  # Windows Software settings
+  $minion_win_repo_cachefile              = undef
+
+  # Returner  settings
+  $minion_return                          = undef
 
   ###############################################
   # cloud vars:

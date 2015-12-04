@@ -119,6 +119,9 @@ append_domain: <%= @minion_append_domain %>
 #  cabinet: 13
 #  cab_u: 14-15
 #
+<% if @minion_grains %>
+grains: <%= @minion_grains %>
+<% end %>
 # Where cache data goes.
 # This data may contain sensitive data and should be protected accordingly.
 #cachedir: /var/cache/salt/minion
@@ -146,10 +149,10 @@ sock_dir: <%= @minion_sock_dir %>
 # Set the default outputter used by the salt-call command. The default is
 # "nested".
 #output: nested
+#
 <% if @minion_output %>
 output: <%= @minion_output %>
 <% end %>
-#
 # By default output is colored. To disable colored output, set the color value
 # to False.
 #color: True
@@ -299,6 +302,8 @@ ping_interval: <%= @minion_ping_interval %>
 # recon_default: 100
 # recon_max: 5000
 # recon_randomize: False
+#
+#
 <% if @minion_recon_default %>
 recon_default: <%= @minion_recon_default %>
 <% end %>
@@ -308,8 +313,6 @@ recon_max: <%= @minion_recon_max %>
 <% if @minion_recon_randomize %>
 recon_randomize: <%= @minion_recon_randomize %>
 <% end %>
-#
-#
 # The loop_interval sets how long in seconds the minion will wait between
 # evaluating the scheduler and running cleanup tasks. This defaults to a
 # sane 60 seconds, but if the minion scheduler needs to be evaluated more
@@ -390,19 +393,22 @@ max_event_size: <%= @minion_max_event_size %>
 #
 #
 #
+<% if @minion_include %>
+include: <%= @minion_include %>
+<% end %>
 #####   Minion module management     #####
 ##########################################
 # Disable specific modules. This allows the admin to limit the level of
 # access the master has to the minion.
 #disable_modules: [cmd,test]
 #disable_returners: []
+#
 <% if @minion_disable_modules %>
 disable_modules: <%= @minion_disable_modules %>
 <% end %>
 <% if @minion_disable_returners %>
 disable_returners: <%= @minion_disable_returners %>
 <% end %>
-#
 # Modules can be loaded from arbitrary paths. This enables the easy deployment
 # of third party modules. Modules for returners and minions can be loaded.
 # Specify a list of extra directories to search for minion modules and
@@ -412,6 +418,7 @@ disable_returners: <%= @minion_disable_returners %>
 #states_dirs: []
 #render_dirs: []
 #utils_dirs: []
+#
 <% if @minion_module_dirs %>
 module_dirs: <%= @minion_module_dirs %>
 <% end %>
@@ -427,23 +434,22 @@ render_dirs: <%= @minion_render_dirs %>
 <% if @minion_utils_dirs %>
 utils_dirs: <%= @minion_utils_dirs %>
 <% end %>
-#
 # A module provider can be statically overwritten or extended for the minion
 # via the providers option, in this case the default module will be
 # overwritten by the specified module. In this example the pkg module will
 # be provided by the yumpkg5 module instead of the system default.
 #providers:
 #  pkg: yumpkg5
+#
 <% if @minion_providers %>
 providers: <%= @minion_providers %>
 <% end %>
-#
 # Enable Cython modules searching and loading. (Default: False)
 #cython_enable: False
+#
 <% if @minion_cython_enable %>
 cython_enable: <%= @minion_cython_enable %>
 <% end %>
-#
 # Specify a max size (in bytes) for modules on import. This feature is currently
 # only supported on *nix operating systems and requires psutil.
 # modules_max_memory: -1
@@ -465,62 +471,65 @@ modules_max_memory: <%= @minion_modules_max_memory %>
 # json_wempy
 #
 #renderer: yaml_jinja
+#
 <% if @minion_renderer %>
 renderer: <%= @minion_renderer %>
 <% end %>
-#
 # The failhard option tells the minions to stop immediately after the first
 # failure detected in the state execution. Defaults to False.
 #failhard: False
+#
 <% if @minion_failhard %>
 failhard: <%= @minion_failhard %>
 <% end %>
-#
 # Reload the modules prior to a highstate run.
 #autoload_dynamic_modules: True
+#
 <% if @minion_autoload_dynamic_modules %>
 autoload_dynamic_modules: <%= @minion_autoload_dynamic_modules %>
 <% end %>
-#
 # clean_dynamic_modules keeps the dynamic modules on the minion in sync with
 # the dynamic modules on the master, this means that if a dynamic module is
 # not on the master it will be deleted from the minion. By default, this is
 # enabled and can be disabled by changing this value to False.
 #clean_dynamic_modules: True
+#
 <% if @minion_clean_dynamic_modules %>
 clean_dynamic_modules: <%= @minion_clean_dynamic_modules %>
 <% end %>
-#
 # Normally, the minion is not isolated to any single environment on the master
 # when running states, but the environment can be isolated on the minion side
 # by statically setting it. Remember that the recommended way to manage
 # environments is to isolate via the top file.
 #environment: None
+#
 <% if @minion_environment %>
 environment: <%= @minion_environment %>
 <% end %>
-#
 # If using the local file directory, then the state top file name needs to be
 # defined, by default this is top.sls.
 #state_top: top.sls
+#
 <% if @minion_state_top %>
 state_top: <%= @minion_state_top %>
 <% end %>
-#
 # Run states when the minion daemon starts. To enable, set startup_states to:
 # 'highstate' -- Execute state.highstate
 # 'sls' -- Read in the sls_list option and execute the named sls files
 # 'top' -- Read top_file option and execute based on that file on the Master
 #startup_states: ''
+#
 <% if @minion_startup_states %>
 startup_states: <%= @minion_startup_states %>
 <% end %>
-#
 # List of states to run when the minion starts up if startup_states is 'sls':
 #sls_list:
 #  - edit.vim
 #  - hyper
 #
+<% if @minion_sls_list %>
+sls_list: <%= @minion_sls_list %>
+<% end %>
 # Top file to execute if startup_states is 'top':
 #top_file: ''
 <% if @minion_top_file %>
@@ -776,20 +785,29 @@ zmq_monitor: <%= @minion_zmq_monitor %>
 #
 # You can specify that all modules should run in test mode:
 #test: True
+#
 <% if @minion_test %>
 test: <%= @minion_test %>
 <% end %>
-#
 # A simple value for the test module:
 #test.foo: foo
 #
+<% if @minion_test_foo %>
+test.foo: <%= @minion_test_foo %>
+<% end %>
 # A list for the test module:
 #test.bar: [baz,quo]
 #
+<% if @minion_test_bar %>
+test.bar: <%= @minion_test_bar %>
+<% end %>
 # A dict for the test module:
 #test.baz: {spam: sausage, cheese: bread}
 #
 #
+<% if @minion_test_baz %>
+test.baz: <%= @minion_test_baz %>
+<% end %>
 ######      Update settings          ######
 ###########################################
 # Using the features in Esky, a salt minion can both run as a frozen app and
@@ -798,10 +816,10 @@ test: <%= @minion_test %>
 #
 # The url for finding and downloading updates. Disabled by default.
 #update_url: False
+#
 <% if @minion_update_url %>
 update_url: <%= @minion_update_url %>
 <% end %>
-#
 # The list of services to restart after a successful update. Empty by default.
 #update_restart_services: []
 <% if @minion_update_restart_services %>
@@ -846,8 +864,13 @@ tcp_keepalive_intvl: <%= @minion_tcp_keepalive_intvl %>
 ############################################
 # Location of the repository cache file on the master:
 #win_repo_cachefile: 'salt://win/repo/winrepo.p'
-
+<% if @minion_win_repo_cachefile %>
+win_repo_cachefile: <%= @minion_win_repo_cachefile %>
+<% end %>
 ######      Returner  settings        ######
 ############################################
 # Which returner(s) will be used for minion's result:
 #return: mysql
+<% if @minion_return %>
+return: <%= @minion_return %>
+<% end %>

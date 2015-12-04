@@ -7,7 +7,6 @@ class salt::minion::config (
   $minion_master                      = $salt::minion::minion_master,
   $minion_random_master               = $salt::minion::minion_random_master,
   $minion_master_type                 = $salt::minion::minion_master_type,
-  $minion_master_alive_interval       = $salt::minion::minion_master_alive_interval,
   $minion_ipv6                        = $salt::minion::minion_ipv6,
   $minion_retry_dns                   = $salt::minion::minion_retry_dns,
   $minion_master_port                 = $salt::minion::minion_master_port,
@@ -18,6 +17,7 @@ class salt::minion::config (
   $minion_pki_dir                     = $salt::minion::minion_pki_dir,
   $minion_id                          = $salt::minion::minion_id,
   $minion_append_domain               = $salt::minion::minion_append_domain,
+  $minion_grains                      = $salt::minion::minion_grains,
   $minion_cachedir                    = $salt::minion::minion_cachedir,
   $minion_verify_env                  = $salt::minion::minion_verify_env,
   $minion_cache_jobs                  = $salt::minion::minion_cache_jobs,
@@ -45,6 +45,7 @@ class salt::minion::config (
   $minion_tcp_pub_port                = $salt::minion::minion_tcp_pub_port,
   $minion_tcp_pull_port               = $salt::minion::minion_tcp_pull_port,
   $minion_max_event_size              = $salt::minion::minion_max_event_size,
+  $minion_include                     = $salt::minion::minion_include,
   $minion_disable_modules             = $salt::minion::minion_disable_modules,
   $minion_disable_returners           = $salt::minion::minion_disable_returners,
   $minion_module_dirs                 = $salt::minion::minion_module_dirs,
@@ -89,11 +90,17 @@ class salt::minion::config (
   $minion_log_granular_levels         = $salt::minion::minion_log_granular_levels,
   $minion_zmq_monitor                 = $salt::minion::minion_zmq_monitor,
   $minion_test                        = $salt::minion::minion_test,
+  $minion_test_foo                    = $salt::minion::minion_test_foo,
+  $minion_test_bar                    = $salt::minion::minion_test_bar,
+  $minion_test_baz                    = $salt::minion::minion_test_baz,
   $minion_update_url                  = $salt::minion::minion_update_url,
   $minion_update_restart_services     = $salt::minion::minion_update_restart_services,
   $minion_tcp_keepalive               = $salt::minion::minion_tcp_keepalive,
   $minion_tcp_keepalive_idle          = $salt::minion::minion_tcp_keepalive_idle,
-  $minion_tcp_keepalive_cnt           = $salt::minion::minion_tcp_keepalive_cnt,)
+  $minion_tcp_keepalive_cnt           = $salt::minion::minion_tcp_keepalive_cnt,
+  $minion_tcp_keepalive_intvl         = $salt::minion::minion_tcp_keepalive_intvl,
+  $minion_win_repo_cachefile          = $salt::minion::minion_win_repo_cachefile,
+  $minion_return                      = $salt::minion::minion_return,)
 inherits salt::minion {
   # installs the master config file defined in salt::params
   file { $minion_config:

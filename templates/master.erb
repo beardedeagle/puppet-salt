@@ -100,14 +100,18 @@ cachedir: <%= @master_cachedir %>
 # each of Salt's module types such as "runners", "output", "wheel", "modules",
 # "states", "returners", etc.
 #extension_modules: <no default>
-
+<% if @master_extension_modules %>
+extension_modules: <%= @master_extension_modules %>
+<% end %>
 # Directory for custom modules. This directory can contain subdirectories for
 # each of Salt's module types such as "runners", "output", "wheel", "modules",
 # "states", "returners", etc.
 # Like 'extension_modules' but can take an array of paths
 #module_dirs: <no default>
 #   - /var/cache/salt/minion/extmods
-
+<% if @master_module_dirs %>
+module_dirs: <%= @master_module_dirs %>
+<% end %>
 # Verify and set permissions on configuration directories at startup:
 #verify_env: True
 <% if @master_verify_env %>
@@ -266,7 +270,9 @@ con_cache: <%= @master_con_cache %>
 # Include config from several files and directories:
 # include:
 #   - /etc/salt/extra_config
-
+<% if @master_include %>
+include: <%= @master_include %>
+<% end %>
 #####        Security settings       #####
 ##########################################
 # Enable "open mode", this mode still maintains encryption, but turns off
@@ -465,10 +471,10 @@ renderer: <%= @master_renderer %>
 # (block, not variable tag!). Defaults to False, corresponds to the Jinja
 # environment init variable "trim_blocks".
 #jinja_trim_blocks: False
+#
 <% if @master_jinja_trim_blocks %>
 jinja_trim_blocks: <%= @master_jinja_trim_blocks %>
 <% end %>
-#
 # If this is set to True leading spaces and tabs are stripped from the start
 # of a line to a block. Defaults to False, corresponds to the Jinja
 # environment init variable "lstrip_blocks".
@@ -656,13 +662,18 @@ fileserver_limit_traversal: <%= @master_fileserver_limit_traversal %>
 # these are disabled by default, but can be easily turned on by setting this
 # flag to True
 #fileserver_events: False
-
+<% if @master_fileserver_events %>
+fileserver_events: <%= @master_fileserver_events %>
+<% end %>
 # Git File Server Backend Configuration
 #
 # Gitfs can be provided by one of two python modules: GitPython or pygit2. If
 # using pygit2, both libgit2 and git must also be installed.
 #gitfs_provider: gitpython
 #
+<% if @master_gitfs_provider %>
+gitfs_provider: <%= @master_gitfs_provider %>
+<% end %>
 # When using the git fileserver backend at least one git remote needs to be
 # defined. The user running the salt master will need read access to the repo.
 #
@@ -694,10 +705,10 @@ gitfs_ssl_verify: <%= @master_gitfs_ssl_verify %>
 # repository and defaults to the repository root.
 #gitfs_root: somefolder/otherfolder
 #
+#
 <% if @master_gitfs_root %>
 gitfs_root: '<%= @master_gitfs_root %>'
 <% end %>
-#
 #####         Pillar settings        #####
 ##########################################
 # Salt Pillars allow for the building of global data that can be made selectively
@@ -722,14 +733,18 @@ ext_pillar: <%= @master_ext_pillar %>
 # before file system pillar. This allows for targeting file system pillar from
 # ext_pillar.
 #ext_pillar_first: False
-
+<% if @master_ext_pillar_first %>
+ext_pillar_first: <%= @master_ext_pillar_first %>
+<% end %>
 # The pillar_gitfs_ssl_verify option specifies whether to ignore ssl certificate
 # errors when contacting the pillar gitfs backend. You might want to set this to
 # false if you're using a git backend that uses a self-signed certificate but
 # keep in mind that setting this flag to anything other than the default of True
 # is a security concern, you may want to try using the ssh transport.
 #pillar_gitfs_ssl_verify: True
-
+<% if @master_pillar_gitfs_ssl_verify %>
+pillar_gitfs_ssl_verify: <%= @master_pillar_gitfs_ssl_verify %>
+<% end %>
 # The pillar_opts option adds the master configuration file data to a dict in
 # the pillar called "master". This is used to set simple configurations in the
 # master config file that can then be used on minions.
@@ -781,13 +796,19 @@ syndic_master: '<%= @master_syndic_master %>'
 <% end %>
 # This is the 'ret_port' of the MasterOfMaster:
 #syndic_master_port: 4506
-
+<% if @master_syndic_master_port %>
+syndic_master_port: '<%= @master_syndic_master_port %>'
+<% end %>
 # PID file of the syndic daemon:
 #syndic_pidfile: /var/run/salt-syndic.pid
-
+<% if @master_syndic_pidfile %>
+syndic_pidfile: '<%= @master_syndic_pidfile %>'
+<% end %>
 # LOG file of the syndic daemon:
 #syndic_log_file: syndic.log
-
+<% if @master_syndic_log_file %>
+syndic_log_file: '<%= @master_syndic_log_file %>'
+<% end %>
 #####      Peer Publish settings     #####
 ##########################################
 # Salt minions can send commands to other minions, but only if the minion is
@@ -831,6 +852,9 @@ peer: <%= @master_peer %>
 #    - manage.up
 #
 #
+<% if @master_peer_run %>
+peer_run: <%= @master_peer_run %>
+<% end %>
 #####         Mine settings     #####
 #####################################
 # Restrict mine.get access from minions. By default any minion has a full access
@@ -849,7 +873,9 @@ peer: <%= @master_peer %>
 #   web.*:
 #     - network.*
 #     - disk.*
-
+<% if @master_mine_get %>
+mine_get: <%= @master_mine_get %>
+<% end %>
 #####         Logging settings       #####
 ##########################################
 # The location of the master log file
@@ -890,6 +916,9 @@ log_level_logfile: <%= @master_log_level_logfile %>
 # can be seen here: http://docs.python.org/library/time.html#time.strftime
 #log_datefmt: '%H:%M:%S'
 #log_datefmt_logfile: '%Y-%m-%d %H:%M:%S'
+<% if @master_log_datefmt %>
+log_datefmt: '<%= @master_log_datefmt %>'
+<% end %>
 <% if @master_log_datefmt_logfile %>
 log_datefmt_logfile: '<%= @master_log_datefmt_logfile %>'
 <% end %>
@@ -949,10 +978,15 @@ range_server: <%= @master_range_server %>
 # Location of the repo on the master:
 #winrepo_dir_ng: '/srv/salt/win/repo-ng'
 #
+<% if @master_winrepo_dir_ng %>
+winrepo_dir_ng: <%= @master_winrepo_dir_ng %>
+<% end %>
 # List of git repositories to include with the local repo:
 #winrepo_remotes_ng:
 #  - 'https://github.com/saltstack/salt-winrepo-ng.git'
-
+<% if @master_winrepo_remotes_ng %>
+winrepo_remotes_ng: <%= @master_winrepo_remotes_ng %>
+<% end %>
 #####  Windows Software Repo settings - Pre 2015.8 #####
 ########################################################
 # Legacy repo settings for pre-2015.8 Windows minions.
@@ -960,14 +994,25 @@ range_server: <%= @master_range_server %>
 # Location of the repo on the master:
 #winrepo_dir: '/srv/salt/win/repo'
 #
+<% if @master_winrepo_dir %>
+winrepo_dir: <%= @master_winrepo_dir %>
+<% end %>
 # Location of the master's repo cache file:
 #winrepo_mastercachefile: '/srv/salt/win/repo/winrepo.p'
 #
+<% if @master_winrepo_mastercachefile %>
+winrepo_mastercachefile: <%= @master_winrepo_mastercachefile %>
+<% end %>
 # List of git repositories to include with the local repo:
 #winrepo_remotes:
 #  - 'https://github.com/saltstack/salt-winrepo.git'
-
+<% if @master_winrepo_remotes %>
+winrepo_remotes: <%= @master_winrepo_remotes %>
+<% end %>
 #####      Returner settings          ######
 ############################################
 # Which returner(s) will be used for minion's result:
 #return: mysql
+<% if @master_return %>
+return: <%= @master_return %>
+<% end %>
