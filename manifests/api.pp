@@ -6,6 +6,9 @@ class salt::api (
   $repo_file_manage                    = $salt::params::repo_file_manage,
   $repo_file                           = $salt::params::repo_file,
   $repo_file_template                  = $salt::params::repo_file_template,
+  $api_config_manage                   = $salt::params::api_config_manage,
+  $api_config                          = $salt::params::api_config,
+  $api_config_template                 = $salt::params::api_config_template,
   $api_package_name                    = $salt::params::api_package_name,
   $api_package_ensure                  = $salt::params::api_package_ensure,
   $api_service_name                    = $salt::params::api_service_name,
@@ -15,6 +18,7 @@ class salt::api (
 inherits salt::params {
   require master
   include 'salt::api::install'
+  include 'salt::api::config'
   include 'salt::api::service'
 
   # Anchor this as per #8140 - this ensures that classes won't float off and
@@ -25,6 +29,7 @@ inherits salt::params {
 
   Anchor['salt::api::begin'] ->
     Class['salt::api::install'] ->
+    Class['salt::api::config'] ->
     Class['salt::api::service'] ->
   Anchor['salt::api::end']
 }

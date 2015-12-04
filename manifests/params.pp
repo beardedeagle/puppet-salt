@@ -32,6 +32,9 @@ class salt::params {
       $cloud_package_name     = 'salt-cloud'
       $cloud_package_ensure   = 'present'
 
+      $api_config_manage      = true
+      $api_config             = '/etc/salt/master.d/salt-api.conf'
+      $api_config_template    = 'salt/salt-api.erb'
       $api_package_name       = 'salt-api'
       $api_package_ensure     = 'present'
       $api_service_name       = 'salt-api'
