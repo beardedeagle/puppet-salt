@@ -3,9 +3,9 @@
 # class { 'salt::master': }
 #
 class salt::master (
-  $repo_file_manage                       = $salt::params::repo_file_manage,
-  $repo_file                              = $salt::params::repo_file,
-  $repo_file_template                     = $salt::params::repo_file_template,
+  $master_repo_file_manage                = $salt::params::repo_file_manage,
+  $master_repo_file                       = $salt::params::repo_file,
+  $master_repo_file_template              = $salt::params::repo_file_template,
   $master_config_manage                   = $salt::params::master_config_manage,
   $master_config                          = $salt::params::master_config,
   $master_config_template                 = $salt::params::master_config_template,

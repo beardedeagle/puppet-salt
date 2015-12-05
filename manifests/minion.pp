@@ -3,9 +3,9 @@
 # class { 'salt::minion': }
 #
 class salt::minion (
-  $repo_file_manage                   = $salt::params::repo_file_manage,
-  $repo_file                          = $salt::params::repo_file,
-  $repo_file_template                 = $salt::params::repo_file_template,
+  $minion_repo_file_manage            = $salt::params::repo_file_manage,
+  $minion_repo_file                   = $salt::params::repo_file,
+  $minion_repo_file_template          = $salt::params::repo_file_template,
   $minion_config_manage               = $salt::params::minion_config_manage,
   $minion_config                      = $salt::params::minion_config,
   $minion_config_template             = $salt::params::minion_config_template,
