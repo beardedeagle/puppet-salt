@@ -73,14 +73,14 @@ include '::salt::master'
 ##Reference
 
 ###Classes
- * salt: Main class, includes all the rest.
- * salt::minion: Handles salt-minion.
- * salt::master: Handles salt-master.
- * salt::cloud: Handles salt-cloud.
- * salt::api: Handles salt-api.
- * salt::syndic: Handles salt-syndic.
- * salt::ssh: Handles salt-ssh.
- * salt::params: all parameters needed for the rest.
+ * 'salt': Main class, includes all the rest.
+ * 'salt::minion': Handles salt-minion.
+ * 'salt::master': Handles salt-master.
+ * 'salt::cloud': Handles salt-cloud.
+ * 'salt::api': Handles salt-api.
+ * 'salt::syndic': Handles salt-syndic.
+ * 'salt::ssh': Handles salt-ssh.
+ * 'salt::params': all parameters needed for the rest.
 
 ##Limitations
 
