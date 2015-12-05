@@ -1,0 +1,49 @@
+#####          Syndic settings       #####
+##########################################
+# The Salt syndic is used to pass commands through a master from a higher
+# master. Using the syndic is simple. If this is a master that will have
+# syndic servers(s) below it, then set the "order_masters" setting to True.
+#
+# If this is a master that will be running a syndic daemon for passthrough, then
+# the "syndic_master" setting needs to be set to the location of the master server
+# to receive commands from.
+
+# Set the order_masters setting to True if this master will command lower
+# masters' syndic interfaces.
+#order_masters: False
+<% if @syndic_order_masters %>
+order_masters: <%= @syndic_order_masters %>
+<% end %>
+# If this master will be running a salt syndic daemon, syndic_master tells
+# this master where to receive commands from.
+#syndic_master: masterofmaster
+<% if @syndic_syndic_master %>
+syndic_master: '<%= @syndic_syndic_master %>'
+<% end %>
+# This is the 'ret_port' of the MasterOfMaster:
+#syndic_master_port: 4506
+<% if @syndic_syndic_master_port %>
+syndic_master_port: '<%= @syndic_syndic_master_port %>'
+<% end %>
+# PID file of the syndic daemon:
+#syndic_pidfile: /var/run/salt-syndic.pid
+<% if @syndic_syndic_pidfile %>
+syndic_pidfile: '<%= @syndic_syndic_pidfile %>'
+<% end %>
+# LOG file of the syndic daemon:
+#syndic_log_file: syndic.log
+<% if @syndic_syndic_log_file %>
+syndic_log_file: '<%= @syndic_syndic_log_file %>'
+<% end %>
+# Syndic id (shared by the salt-syndic daemon with a potential salt-minion
+# daemon on the same system)
+#id: undef
+<% if @syndic_id %>
+syndic_id: <% @syndic_id %>
+<% end %>
+# To reduce the amount of time the CLI waits for Minions to respond, install a
+# Minion on the Syndic or tune the value of the syndic_wait configuration.
+#syndic_syndic_wait: undef
+<% if @syndic_syndic_wait %>
+syndic_syndic_wait: <% @syndic_syndic_wait %>
+<% end %>

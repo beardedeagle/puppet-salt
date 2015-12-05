@@ -116,6 +116,11 @@ class salt::master::config (
   $master_winrepo_remotes                 = $salt::master::master_winrepo_remotes,
   $master_return                          = $salt::master::master_return,)
 inherits salt::master {
+  # creates master.d directory for addition configs (required for other classes)
+  file { '/etc/salt/master.d':
+    ensure => 'directory',
+  }
+
   # installs the master config file defined in salt::params
   file { $master_config:
     ensure  => file,

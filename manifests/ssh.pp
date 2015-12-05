@@ -1,16 +1,18 @@
-# this class will only install the salt ssh
+# this class will only install salt-ssh
 # example:
 # class { 'salt::ssh': }
 #
 class salt::ssh (
-  $repo_file_manage                       = $salt::params::repo_file_manage,
-  $repo_file                              = $salt::params::repo_file,
-  $repo_file_template                     = $salt::params::repo_file_template,
   $ssh_config_manage                      = $salt::params::ssh_config_manage,
   $ssh_config                             = $salt::params::ssh_config,
   $ssh_config_template                    = $salt::params::ssh_config_template,
+  $ssh_roster_manage                      = $salt::params::ssh_roster_manage,
+  $ssh_roster                             = $salt::params::ssh_roster,
+  $ssh_roster_template                    = $salt::params::ssh_roster_template,
   $ssh_package_name                       = $salt::params::ssh_package_name,
-  $ssh_package_ensure                     = $salt::params::ssh_package_ensure,)
+  $ssh_package_ensure                     = $salt::params::ssh_package_ensure,
+  $ssh_roster_file                        = $salt::params::ssh_roster_file,
+  $ssh_ssh_minion_opts                    = $salt::params::ssh_ssh_minion_opts,)
 inherits salt::params {
   require master
   include 'salt::ssh::install'

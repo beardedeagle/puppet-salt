@@ -1,6 +1,100 @@
-# Salt-Api
 rest_cherrypy:
-  port: 8000
-  disable_ssl: True
-  webhook_url: /hook
-  webhook_disable_auth: True
+  # The port for the webserver to listen on. Required.
+  port: <%= @api_port %>
+  # The socket interface for the HTTP server to listen on.
+  #host: 0.0.0.0
+  <% if @api_host %>
+  host: <%= @api_host %>
+  <% end %>
+  # Starts the web server in development mode. It will reload itself when the
+  # underlying code is changed and will output more debugging info.
+  #debug: False
+  <% if @api_debug %>
+  debug: <%= @api_debug %>
+  <% end %>
+  # The path to a SSL certificate. (See below)
+  #ssl_crt: ''
+  <% if @api_ssl_crt %>
+  ssl_crt: <%= @api_ssl_crt %>
+  <% end %>
+  # The path to the private key for your SSL certificate. (See below)
+  #ssl_key: ''
+  <% if @api_ssl_key %>
+  ssl_key: <%= @api_ssl_key %>
+  <% end %>
+  # A flag to disable SSL. Warning: your Salt authentication credentials will be
+  # sent in the clear!
+  #disable_ssl: ''
+  <% if @api_disable_ssl %>
+  disable_ssl: <%= @api_disable_ssl %>
+  <% end %>
+  # The Webhook URL requires authentication by default but external services
+  # cannot always be configured to send authentication. See the Webhook
+  # documentation for suggestions on securing this interface.
+  #webhook_disable_auth: False
+  <% if @api_webhook_disable_auth %>
+  webhook_disable_auth: <%= @api_webhook_disable_auth %>
+  <% end %>
+  # Configure the URL endpoint for the Webhook entry point.
+  #webhook_url: /hook
+  <% if @api_webhook_url %>
+  webhook_url: <%= @api_webhook_url %>
+  <% end %>
+  # The number of worker threads to start up in the pool.
+  #thread_pool: 100
+  <% if @api_thread_pool %>
+  thread_pool: <%= @api_thread_pool %>
+  <% end %>
+  # Specify the maximum number of HTTP connections to queue.
+  #socket_queue_size: 30
+  <% if @api_socket_queue_size %>
+  socket_queue_size: <%= @api_socket_queue_size %>
+  <% end %>
+  # Whether to check for and kill HTTP responses that have exceeded the default
+  # timeout.
+  #expire_responses: True
+  <% if @api_expire_responses %>
+  expire_responses: <%= @api_expire_responses %>
+  <% end %>
+  # Maximum size for the HTTP request body.
+  #max_request_body_size: 1048576
+  <% if @api_max_request_body_size %>
+  max_request_body_size: <%= @api_max_request_body_size %>
+  <% end %>
+  # Collect and report statistics about the CherryPy server. Reports are available
+  # via the Stats URL.
+  #collect_stats: False
+  <% if @api_collect_stats %>
+  collect_stats: <%= @api_collect_stats %>
+  <% end %>
+  # A filesystem path to static HTML/JavaScript/CSS/image assets.
+  #static: ''
+  <% if @api_static %>
+  static: <%= @api_static %>
+  <% end %>
+  # The URL prefix to use when serving static assets out of the directory
+  # specified in the static setting.
+  #static_path: /static
+  <% if @api_static_path %>
+  static_path: <%= @api_static_path %>
+  <% end %>
+  # A filesystem path to an HTML file that will be served as a static file. This
+  # is useful for bootstrapping a single-page JavaScript app.
+  #app: ''
+  <% if @api_app %>
+  app: <%= @api_app %>
+  <% end %>
+  # The URL prefix to use for serving the HTML file specified in the app setting.
+  # This should be a simple name containing no slashes. Any path information after
+  # the specified path is ignored; this is useful for apps that utilize the HTML5
+  # history API.
+  #app_path: /app
+  <% if @api_app_path %>
+  app_path: <%= @api_app_path %>
+  <% end %>
+  # A URL path to the main entry point for the application. This is useful for
+  # serving multiple applications from the same URL.
+  #root_prefix: /
+  <% if @api_root_prefix %>
+  root_prefix: <%= @api_root_prefix %>
+  <% end %>

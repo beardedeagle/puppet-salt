@@ -3,9 +3,6 @@
 # class { 'salt::cloud': }
 #
 class salt::cloud (
-  $repo_file_manage                       = $salt::params::repo_file_manage,
-  $repo_file                              = $salt::params::repo_file,
-  $repo_file_template                     = $salt::params::repo_file_template,
   $cloud_config_manage                    = $salt::params::cloud_config_manage,
   $cloud_config                           = $salt::params::cloud_config,
   $cloud_config_template                  = $salt::params::cloud_config_template,

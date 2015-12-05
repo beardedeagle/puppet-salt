@@ -24,9 +24,9 @@ This module can be used to install a single salt master, minion, cloud, api, syn
 
 ###What salt affects
 
- * salt master/minion package.
- * salt master/minion configuration files.
- * salt master/minion service.
+ * salt master/minion/cloud/api/syndic/ssh package.
+ * salt master/minion/cloud/api/syndic/ssh configuration files.
+ * salt master/minion/api/syndic service.
 
 ###Beginning with salt
 
@@ -46,7 +46,9 @@ class { 'salt::master': master_package_name => 'salt-master-git', }
 ##Usage
 
 All interaction with the salt module can be done through
-the main salt class.
+the main salt class. All services EXCEPT salt-minion rely
+on salt-master and will be installed along side whatever
+additional service you specify.
 
 ###I just want salt, what's the minimum I need?
 
@@ -65,7 +67,7 @@ include '::salt::minion'
 this will install a salt master and a minion for itself.
 
 ```puppet
-include '::salt'
+include '::salt::master'
 ```
 
 ##Reference
@@ -80,40 +82,6 @@ include '::salt'
  * salt::ssh: Handles salt-ssh.
  * salt::params: all parameters needed for the rest.
 
-###Parameters salt::minion
-
-Here are just a few parameters that are available in the salt::minion module
-The rest you can look up in salt::params
-
-####`minion_config`
-
-This sets the file to write minion configuration into.
-
-####`minion_package_name`
-
-This determines the name of the package to install.
-
-####`minion_service_name`
-
-This selects the name of the salt minion service for puppet to manage.
-
-###Parameters salt::master
-
-Here are just a few parameters that are available in the salt::master module
-The rest you can look up in salt::params
-
-####`master_service_name`
-
-This selects the name of the salt minion service for puppet to manage.
-
-####`master_package_name`
-
-This determines the name of the package to install.
-
-####`master_config`
-
-This sets the file to write salt master configuration into.
-
 ##Limitations
 
-This module has been built on and tested against Puppet >= 3.8.4 and Ruby >=2.0.0.
+This module has been built on and tested against CentOS >= 5, Puppet >= 3.8.4 and Ruby >=2.0.0.
