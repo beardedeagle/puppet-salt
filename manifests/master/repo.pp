@@ -12,6 +12,5 @@ inherits salt::master {
     mode    => '0664',
     content => template($master_repo_file_template),
     replace => $master_repo_file_manage,
-    force   => true,
   }
 }

@@ -12,6 +12,5 @@ inherits salt::minion {
     mode    => '0664',
     content => template($minion_repo_file_template),
     replace => $minion_repo_file_manage,
-    force   => true,
   }
 }
