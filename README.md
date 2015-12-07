@@ -15,7 +15,9 @@
 
 # salt Puppet Module
 
-Manage salt server, client, cloud, api, syndic and ssh via Puppet.
+Manage salt server, client, cloud, api, syndic and ssh via Puppet. By default no parameters are set for
+master, minion, cloud, api, syndic and salt-ssh because SaltStack provides sane defaults for most of these
+(exceptions being api_port and syndic_syndic_master).
 
 ##Module Description
 
