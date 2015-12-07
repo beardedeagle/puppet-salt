@@ -13,9 +13,6 @@ describe 'salt' do
   end
 
   context 'on RedHat' do
-    let(:facts) {{
-        :osfamily => distro,
-      }}
 
     it { should contain_class('salt::master::install') }
     it { should contain_class('salt::master::config') }
