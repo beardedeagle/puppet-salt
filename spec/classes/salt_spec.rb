@@ -16,6 +16,7 @@ describe 'salt' do
           :osfamily => distro,
         }}
 
+      it { should contain_class('salt::repo::config') }
       it { should contain_class('salt::master::install') }
       it { should contain_class('salt::master::config') }
       it { should contain_class('salt::master::service') }
@@ -32,6 +33,13 @@ describe 'salt' do
       it { should contain_class('salt::syndic::service') }
       it { should contain_class('salt::ssh::install') }
       it { should contain_class('salt::ssh::config') }
+
+      ##
+      ## salt-master config file
+      ##
+      describe 'config file with default params' do
+        it { should contain_file('/etc/yum.repos.d/saltstack.repo')}
+      end
 
       ##
       ## salt-master config file
