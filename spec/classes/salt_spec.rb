@@ -12,7 +12,7 @@ describe 'salt' do
     end
   end
 
-  ['Debian', 'RedHat', 'SUSE', ].each do |distro|
+  ['Debian', ].each do |distro|
     context "on #{distro}" do
       let(:facts) {{
           :osfamily => distro,
