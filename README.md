@@ -10,7 +10,8 @@
     * [Beginning with salt](#beginning-with-salt)
 4. [Usage - Configuration options and additional functionality](#usage)
 5. [Reference - An under-the-hood peek at what the module is doing and how](#reference)
-5. [Limitations - OS compatibility, etc.](#limitations)
+6. [Limitations - OS compatibility, etc.](#limitations)
+7. [TODO](#todo)
 
 # salt Puppet Module
 
@@ -70,6 +71,8 @@ this will install a salt master and a minion for itself.
 include '::salt::master'
 ```
 
+This is applicable to all salt-$PACKAGENAME included in this module.
+
 ##Reference
 
 ###Classes
@@ -85,3 +88,8 @@ include '::salt::master'
 ##Limitations
 
 This module has been built on and tested against CentOS >= 5, Puppet >= 3.8.4 and Ruby >=2.0.0.
+
+##TODO
+- Add multi-distro support for latest package installs
+- Add multi-os support
+- Better test coverage
