@@ -3,9 +3,6 @@
 # class { 'salt::minion': }
 #
 class salt::minion (
-  $minion_repo_file_manage            = $salt::params::repo_file_manage,
-  $minion_repo_file                   = $salt::params::repo_file,
-  $minion_repo_file_template          = $salt::params::repo_file_template,
   $minion_config_manage               = $salt::params::minion_config_manage,
   $minion_config                      = $salt::params::minion_config,
   $minion_config_template             = $salt::params::minion_config_template,
@@ -114,7 +111,7 @@ class salt::minion (
   $minion_win_repo_cachefile          = $salt::params::minion_win_repo_cachefile,
   $minion_return                      = $salt::params::minion_return,)
 inherits salt::params {
-  #include 'salt::minion::repo'
+  require repo
   include 'salt::minion::install'
   include 'salt::minion::config'
   include 'salt::minion::service'
@@ -126,7 +123,6 @@ inherits salt::params {
   anchor { 'salt::minion::end': }
 
   Anchor['salt::minion::begin'] ->
-    #Class['salt::minion::repo'] ->
     Class['salt::minion::install'] ->
     Class['salt::minion::config'] ->
     Class['salt::minion::service'] ->

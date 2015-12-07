@@ -3,9 +3,6 @@
 # class { 'salt::master': }
 #
 class salt::master (
-  $master_repo_file_manage                = $salt::params::repo_file_manage,
-  $master_repo_file                       = $salt::params::repo_file,
-  $master_repo_file_template              = $salt::params::repo_file_template,
   $master_config_manage                   = $salt::params::master_config_manage,
   $master_config                          = $salt::params::master_config,
   $master_config_template                 = $salt::params::master_config_template,
@@ -122,7 +119,7 @@ class salt::master (
   $master_winrepo_remotes                 = $salt::params::master_winrepo_remotes,
   $master_return                          = $salt::params::master_return,)
 inherits salt::params {
-  include 'salt::master::repo'
+  require repo
   include 'salt::master::install'
   include 'salt::master::config'
   include 'salt::master::service'
@@ -134,7 +131,6 @@ inherits salt::params {
   anchor { 'salt::master::end': }
 
   Anchor['salt::master::begin'] ->
-    Class['salt::master::repo'] ->
     Class['salt::master::install'] ->
     Class['salt::master::config'] ->
     Class['salt::master::service'] ->
