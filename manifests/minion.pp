@@ -111,7 +111,7 @@ class salt::minion (
   $minion_win_repo_cachefile          = $salt::params::minion_win_repo_cachefile,
   $minion_return                      = $salt::params::minion_return,)
 inherits salt::params {
-  require repo
+  require 'salt::repo'
   include 'salt::minion::install'
   include 'salt::minion::config'
   include 'salt::minion::service'

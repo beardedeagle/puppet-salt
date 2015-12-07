@@ -119,7 +119,7 @@ class salt::master (
   $master_winrepo_remotes                 = $salt::params::master_winrepo_remotes,
   $master_return                          = $salt::params::master_return,)
 inherits salt::params {
-  require repo
+  require 'salt::repo'
   include 'salt::master::install'
   include 'salt::master::config'
   include 'salt::master::service'
