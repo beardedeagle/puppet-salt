@@ -1,5 +1,7 @@
 require 'spec_helper'
 
+at_exit { RSpec::Puppet::Coverage.report! }
+
 describe 'salt' do
 
   context 'on unsupported distributions' do
