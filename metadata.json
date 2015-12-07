@@ -1,6 +1,6 @@
 {
   "name": "puppet-salt",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "author": "beardedeagle",
   "summary": "Puppet module to install and configure SaltStack.",
   "license": "Apache 2.0",
