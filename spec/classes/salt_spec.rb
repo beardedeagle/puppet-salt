@@ -12,7 +12,7 @@ describe 'salt' do
     end
   end
 
-  context "on #{distro}" do
+  context 'on RedHat' do
     let(:facts) {{
         :osfamily => distro,
       }}
