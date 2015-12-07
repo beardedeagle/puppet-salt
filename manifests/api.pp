@@ -31,7 +31,7 @@ class salt::api (
   $api_app_path                        = $salt::params::api_app_path,
   $api_root_prefix                     = $salt::params::api_root_prefix,)
 inherits salt::params {
-  require master
+  require 'salt::master'
   include 'salt::api::install'
   include 'salt::api::config'
   include 'salt::api::service'

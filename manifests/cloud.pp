@@ -18,7 +18,7 @@ class salt::cloud (
   $cloud_log_granular_levels              = $salt::params::cloud_log_granular_levels,
   $cloud_delete_sshkeys                   = $salt::params::cloud_delete_sshkeys,)
 inherits salt::params {
-  require master
+  require 'salt::master'
   include 'salt::cloud::install'
   include 'salt::cloud::config'
 

@@ -14,7 +14,7 @@ class salt::ssh (
   $ssh_roster_file                        = $salt::params::ssh_roster_file,
   $ssh_ssh_minion_opts                    = $salt::params::ssh_ssh_minion_opts,)
 inherits salt::params {
-  require master
+  require 'salt::master'
   include 'salt::ssh::install'
   include 'salt::ssh::config'
 

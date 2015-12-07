@@ -20,7 +20,7 @@ class salt::syndic (
   $syndic_id                              = $salt::params::syndic_id,
   $syndic_syndic_wait                     = $salt::params::syndic_syndic_wait,)
 inherits salt::params {
-  require master
+  require 'salt::master'
   include 'salt::syndic::install'
   include 'salt::syndic::config'
   include 'salt::syndic::service'
