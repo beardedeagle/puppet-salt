@@ -1,5 +1,5 @@
 {
-  "name": "puppet-salt",
+  "name": "beardedeagle-salt",
   "version": "0.1.0",
   "author": "beardedeagle",
   "summary": "Puppet module to install and configure SaltStack.",
