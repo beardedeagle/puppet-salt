@@ -120,12 +120,10 @@ describe 'salt' do
       end
 
       ##
-      ## salt-syndic service (currently won't work till I pass in test defaults)
+      ## salt-syndic service
       ##
       describe 'service with default params' do
-        let(:params) {{
-          :syndic_syndic_master => 'salt-master.example.com',
-        }}
+        let(:params) {{:syndic_syndic_master => 'salt-master.example.com'}}
         it { should contain_service('salt-syndic').with(
           'ensure'     => 'running',
           'enable'     => 'true',
