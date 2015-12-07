@@ -66,7 +66,7 @@ class salt::params {
       $ssh_package_name                       = 'salt-ssh'
       $ssh_package_ensure                     = 'present'
     }
-    default     : {
+    default : {
       case $::operatingsystem {
         default : {
           fail("Unsupported platform: ${::osfamily}/${::operatingsystem}")
