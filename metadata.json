@@ -1,16 +1,20 @@
 {
   "name": "beardedeagle-salt",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": "beardedeagle",
+  "license": "Apache-2.0",
   "summary": "Puppet module to install and configure SaltStack.",
-  "license": "Apache 2.0",
-  "source": "git:github.com/beardedeagle/puppet-salt.git",
-  "project_page": "https://github.com/beardedeagle/puppet-salt",
+  "source": "https://github.com/beardedeagle/puppet-salt",
+  "project_page": "https://forge.puppetlabs.com/beardedeagle/salt",
   "issues_url": "https://github.com/beardedeagle/puppet-salt/issues",
-  "dependencies": [
+  "tags": ["automation", "orchestration"],
+  "operatingsystem_support": [
     {
-      "name": "puppetlabs-stdlib",
-      "version_requirement": ">= 2.2.1"
+      "operatingsystem":"RedHat",
+      "operatingsystemrelease":[ "5.0", "6.0", "7.0" ]
     }
+  ],
+  "dependencies": [
+    { "name": "puppetlabs/stdlib", "version_requirement": ">= 2.2.1 <5.0.0" }
   ]
 }
