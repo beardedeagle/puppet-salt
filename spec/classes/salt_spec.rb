@@ -12,7 +12,7 @@ describe 'salt' do
     end
   end
 
-  context 'on RedHat' do
+  context 'Run base tests' do
 
     it { should contain_class('salt::master::install') }
     it { should contain_class('salt::master::config') }
