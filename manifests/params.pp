@@ -385,7 +385,7 @@ class salt::params {
 
   # Syndic settings
   $syndic_order_masters                       = undef
-  $syndic_syndic_master                       = undef
+  $syndic_syndic_master                       = salt
   $syndic_syndic_master_port                  = undef
   $syndic_syndic_pidfile                      = undef
   $syndic_syndic_log_file                     = undef
