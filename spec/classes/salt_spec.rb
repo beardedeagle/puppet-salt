@@ -123,7 +123,7 @@ describe 'salt' do
       ## salt-syndic service
       ##
       describe 'service with default params' do
-        let(:params) {{:syndic_syndic_master => 'salt-master.example.com'}}
+        assigns[:syndic_syndic_master] = 'salt-master.example.com'
         it { should contain_service('salt-syndic').with(
           'ensure'     => 'running',
           'enable'     => 'true',
